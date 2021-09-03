@@ -1,3 +1,10 @@
+#contenedor {
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+
 .container {
     max-width: 960px;
   }
@@ -79,3 +86,19 @@
   }
   
   .overflow-hidden { overflow: hidden; }
+
+  .sidebar {
+    position: fixed;
+  }
+
+  .outer {
+    position: relative;
+    width: auto;
+    margin-left: 12%;
+   }
+   
+   #canvas {
+    /*background-color: blue;*/
+    position: relative;
+    width: 100%;
+   }
