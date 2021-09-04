@@ -93,12 +93,9 @@
 
   .outer {
     position: relative;
-    width: auto;
     margin-left: 12%;
    }
    
-   #canvas {
-    /*background-color: blue;*/
-    position: relative;
-    width: 100%;
-   }
+   /*#canvas {
+    background-color: blue;
+   }*/
