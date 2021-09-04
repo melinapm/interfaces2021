@@ -46,7 +46,8 @@ function draw(e){
 
 // Herramientas de dibujo
 function pincel(){
-  color = "rgb(0,0,0)";
+  if (this.id == "pincel")
+    color = "rgb(0,0,0)";
   lazo = "lapiz";
   canvas.addEventListener("mousedown",startPosition);
   canvas.addEventListener("mouseup",finishPosition);
@@ -62,6 +63,7 @@ function goma(){
 
 function colores(e){
   color = e.target.style.color;
+  pincel();
 }
 
 //<---------------------------------------FIN Barra de herramientas-------------------------------------->
@@ -314,8 +316,8 @@ document.querySelector("#pincel").addEventListener("click",pincel);
 document.querySelector("#goma").addEventListener("click",goma);
 
 // Asignacion de funcion para colores
-var buttons = document.querySelectorAll(".color").length;
-for (var i = 0; i < buttons ; i++) {
+var botonesColores = document.querySelectorAll(".color").length;
+for (var i = 0; i < botonesColores ; i++) {
     document.querySelectorAll(".color")[i].addEventListener("click", colores);
 }
 
