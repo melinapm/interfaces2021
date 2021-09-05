@@ -99,3 +99,7 @@
    /*#canvas {
     background-color: blue;
    }*/
+   .miniatura{
+     width: 100px;
+     border: 2px solid white;
+   }

@@ -17,6 +17,25 @@ let tamanio_pincel = 1;
 let tamanio_goma = 5;
 
 //<---------------------------------------Barra de herramientas-------------------------------------->
+
+function filtrosChiquitos(){
+  
+}
+function fotito(){
+  negativo();
+  document.getElementById("img-negativo").src = canvas.toDataURL("image/png");
+  sepia();
+  document.getElementById("img-sepia").src = canvas.toDataURL("image/png");
+  brillo();
+  document.getElementById("img-brillo").src = canvas.toDataURL("image/png");
+  binario();
+  document.getElementById("img-binario").src = canvas.toDataURL("image/png");
+  blur();
+  document.getElementById("img-blur").src = canvas.toDataURL("image/png");
+  saturacion();
+  document.getElementById("img-saturacion").src = canvas.toDataURL("image/png");
+  original();
+}
 //<---------------------------------------Pincel Goma Colores-------------------------------------->
 function startPosition(){
   paint = true;
@@ -120,7 +139,7 @@ function subir(){ //SUBE UNA FOTO DESDE DISCO
 
               // draw image on canvas
               context.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-
+              fotito();
               // get imageData from content of canvas
           }
       }
@@ -289,12 +308,76 @@ for (let x = 0; x < imageData.width; x++) {
 
 
 function saturacion(){
-
+  context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
+  imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+  let hsl;
+  let rgb;
+  for (let x = 0; x < imageData.width; x++) {
+      for (let y = 0; y < imageData.height; y++) {
+        r = getR(x,y);
+        g = getG(x,y);
+        b = getB(x,y);
+        hsl = rgbToHsl(r,g,b);
+        hsl[1]=1;
+        rgb = hslToRgb(hsl[0],hsl[1],hsl[2]);
+        imageData.data[index + 0] = rgb[0];
+        imageData.data[index + 1] = rgb[1];
+        imageData.data[index + 2] = rgb[2];
+      }
+    }
+    context.putImageData(imageData, 0, 0);
 }
 
 
 function deteccionBordes(){
 
+}
+
+//<---------------------------------Conversores de formato ------------------------------>
+function rgbToHsl(r, g, b) {
+  r =r/255;
+  g =g/255;
+  b =b/255;
+  let max = Math.max(r, g, b)
+  let min = Math.min(r, g, b);
+  let h
+  let s
+  let l = (max + min) / 2;
+  if (max == min) {
+    h = s = 0;
+  }
+  else {
+    let d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+   h /= 6;
+ }
+ return [h, s, l];
+}
+
+function hslToRgb(h, s, l) {
+  if (s == 0) {
+    r = g = b = l;
+  } else {
+      function gorgb(p, q, t) {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      }
+      let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      let p = 2 * l - q;
+      r = gorgb(p, q, h + 1 / 3);
+      g = gorgb(p, q, h);
+      b = gorgb(p, q, h - 1 / 3);
+  }
+return [r * 255, g * 255, b * 255];
 }
 
 //<--------------------------------------------------------------------------------> 
