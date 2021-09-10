@@ -18,9 +18,6 @@ let tamanio_goma = 5;
 
 //<---------------------------------------Barra de herramientas-------------------------------------->
 
-function filtrosChiquitos(){
-  
-}
 function fotito(){
   negativo();
   document.getElementById("img-negativo").src = canvas.toDataURL("image/png");
@@ -36,6 +33,17 @@ function fotito(){
   document.getElementById("img-saturacion").src = canvas.toDataURL("image/png");
   original();
 }
+
+function LimpiarFotitos(){
+  document.getElementById("img-negativo").src = "";
+  document.getElementById("img-sepia").src = "";
+  document.getElementById("img-brillo").src = "";
+  document.getElementById("img-binario").src = "";
+  document.getElementById("img-blur").src = "";
+  document.getElementById("img-saturacion").src = "";
+}
+
+
 //<---------------------------------------Pincel Goma Colores-------------------------------------->
 function startPosition(){
   paint = true;
@@ -151,6 +159,7 @@ function limpiar(){ //DEJA EL CANVAS EN BLANCO
   context.fillStyle = "#FFFFFF"; // canvas background color
   context.fillRect(0, 0, canvas.width, canvas.height);
   image=null; //Limpia la foto por si dan en descargar no descargue lo antiguo
+  LimpiarFotitos();
 }
 
 function getR(x,y){
@@ -385,7 +394,6 @@ return [r * 255, g * 255, b * 255];
 
 //<-------------------------------------Eventos-------------------------------------------> 
 document.querySelector("#subir").addEventListener("click",subir);
-document.querySelector("#limpiar").addEventListener("click",limpiar);
 document.querySelector("#descargar").addEventListener("click",save);
 document.querySelector("#f-original").addEventListener("click",original);
 document.querySelector("#f-negativo").addEventListener("click",negativo);
@@ -397,6 +405,10 @@ document.querySelector("#f-saturacion").addEventListener("click",saturacion);
 document.querySelector("#f-deteccionBordes").addEventListener("click",deteccionBordes);
 document.querySelector("#pincel").addEventListener("click",pincel);
 document.querySelector("#goma").addEventListener("click",goma);
+
+// Nuevo
+const nuevoLienzo = document.querySelector('#limpiar');
+nuevoLienzo.addEventListener('click', limpiar);
 
 // Asignacion de funcion para colores
 var botonesColores = document.querySelectorAll(".color").length;
