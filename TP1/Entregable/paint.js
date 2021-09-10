@@ -16,6 +16,20 @@ let color = "rgb(0,0,0)";
 let tamanio_pincel = 1;
 let tamanio_goma = 5;
 
+//<---------- Matriz kernel para aplicar Sobel --------->
+
+let kernelX = [
+  [-1,0,1],
+  [-2,0,2],
+  [-1,0,1]
+];
+
+let kernelY = [
+  [-1,-2,-1],
+  [0,0,0],
+  [1,2,1]
+];
+
 //<---------------------------------------Barra de herramientas-------------------------------------->
 
 function fotito(){
@@ -147,7 +161,7 @@ function subir(){ //SUBE UNA FOTO DESDE DISCO
 
               // draw image on canvas
               context.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-              fotito();
+              //fotito();
               // get imageData from content of canvas
           }
       }
@@ -337,9 +351,99 @@ function saturacion(){
     context.putImageData(imageData, 0, 0);
 }
 
+// Funcion para deteccion de Bordes
+function escalaDeGrises(imageData){
+  var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+      var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+      data[i]     = avg; // red
+      data[i + 1] = avg; // green
+      data[i + 2] = avg; // blue
+    }
+    return imageData;
+}
+
+function bindPixelAt(data, width) {
+  return function(x, y, i) {
+    i = i || 0;
+    return data[((width * y) + x) * 4 + i];
+  };
+}
+
+var sobelData = [];
 
 function deteccionBordes(){
+    context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
+    imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+    imagenGris = escalaDeGrises(imageData);
 
+    pixelAt = bindPixelAt(imagenGris.data, imageData.width);
+    
+    for (let x = 0; x < imageData.width; x++) {
+      for (let y = 0; y < imageData.height; y++) {
+        // Mh
+        var pixelX = (
+          (kernelX[0][0] * pixelAt(x - 1, y - 1)) +
+          (kernelX[0][1] * pixelAt(x, y - 1)) +
+          (kernelX[0][2] * pixelAt(x + 1, y - 1)) +
+          (kernelX[1][0] * pixelAt(x - 1, y)) +
+          (kernelX[1][1] * pixelAt(x, y)) +
+          (kernelX[1][2] * pixelAt(x + 1, y)) +
+          (kernelX[2][0] * pixelAt(x - 1, y + 1)) +
+          (kernelX[2][1] * pixelAt(x, y + 1)) +
+          (kernelX[2][2] * pixelAt(x + 1, y + 1))
+        );
+        // Mv
+        var pixelY = (
+          (kernelY[0][0] * pixelAt(x - 1, y - 1)) +
+          (kernelY[0][1] * pixelAt(x, y - 1)) +
+          (kernelY[0][2] * pixelAt(x + 1, y - 1)) +
+          (kernelY[1][0] * pixelAt(x - 1, y)) +
+          (kernelY[1][1] * pixelAt(x, y)) +
+          (kernelY[1][2] * pixelAt(x + 1, y)) +
+          (kernelY[2][0] * pixelAt(x - 1, y + 1)) +
+          (kernelY[2][1] * pixelAt(x, y + 1)) +
+          (kernelY[2][2] * pixelAt(x + 1, y + 1))
+        );
+        
+        // Magnitud o tasa de cambio de intensidad
+        var magnitude = Math.sqrt((pixelX * pixelX) + (pixelY * pixelY))>>>0; // Raiz cuadrada de Gx^2 + Gy^2
+
+        r = getR(x,y);
+          g = getG(x,y);
+          b = getB(x,y);
+          imageData.data[index + 0] = magnitude;
+          imageData.data[index + 1] = magnitude;
+          imageData.data[index + 2] = magnitude; 
+
+          /*
+        if (magnitude == 0) {
+          r = getR(x,y);
+          g = getG(x,y);
+          b = getB(x,y);
+          imageData.data[index + 0] = 255;
+          imageData.data[index + 1] = 255;
+          imageData.data[index + 2] = 255;}
+        else if (magnitude == 1) {
+          r = getR(x,y);
+          g = getG(x,y);
+          b = getB(x,y);
+          imageData.data[index + 0] = magnitude;
+          imageData.data[index + 1] = magnitude;
+          imageData.data[index + 2] = magnitude;       
+        } else {
+          r = getR(x,y);
+          g = getG(x,y);
+          b = getB(x,y);
+          imageData.data[index + 0] = magnitude;
+          imageData.data[index + 1] = magnitude;
+          imageData.data[index + 2] = magnitude;}*/
+
+        //sobelData.push(magnitude, magnitude, magnitude, 255); // Array
+      }
+    }
+    context.putImageData(imageData, 0, 0);
 }
 
 //<---------------------------------Conversores de formato ------------------------------>
