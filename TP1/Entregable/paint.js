@@ -16,20 +16,6 @@ let color = "rgb(0,0,0)";
 let tamanio_pincel = 1;
 let tamanio_goma = 5;
 
-//<---------- Matriz kernel para aplicar Sobel --------->
-
-let kernelX = [
-  [-1,0,1],
-  [-2,0,2],
-  [-1,0,1]
-];
-
-let kernelY = [
-  [-1,-2,-1],
-  [0,0,0],
-  [1,2,1]
-];
-
 //<---------------------------------------Barra de herramientas-------------------------------------->
 
 function fotito(){
@@ -45,6 +31,8 @@ function fotito(){
   document.getElementById("img-blur").src = canvas.toDataURL("image/png");
   saturacion();
   document.getElementById("img-saturacion").src = canvas.toDataURL("image/png");
+  deteccionBordes();
+  document.getElementById("img-bordes").src = canvas.toDataURL("image/png");
   original();
 }
 
@@ -55,6 +43,7 @@ function LimpiarFotitos(){
   document.getElementById("img-binario").src = "";
   document.getElementById("img-blur").src = "";
   document.getElementById("img-saturacion").src = "";
+  document.getElementById("img-bordes").src = "";
 }
 
 
@@ -161,7 +150,7 @@ function subir(){ //SUBE UNA FOTO DESDE DISCO
 
               // draw image on canvas
               context.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-              //fotito();
+              fotito();
               // get imageData from content of canvas
           }
       }
@@ -364,86 +353,109 @@ function escalaDeGrises(imageData){
     return imageData;
 }
 
-function bindPixelAt(data, width) {
-  return function(x, y, i) {
-    i = i || 0;
-    return data[((width * y) + x) * 4 + i];
-  };
-}
+//<---------- Matriz kernel para aplicar Sobel --------->
 
-var sobelData = [];
+let kernelX = [
+  [-1,0,1],
+  [-2,0,2],
+  [-1,0,1]
+];
+
+let kernelY = [
+  [-1,-2,-1],
+  [0,0,0],
+  [1,2,1]
+];
 
 function deteccionBordes(){
     context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
     imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-    imagenGris = escalaDeGrises(imageData);
-
-    pixelAt = bindPixelAt(imagenGris.data, imageData.width);
+    imageDataCopy = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+    escalaDeGrises(imageData);
     
     for (let x = 0; x < imageData.width; x++) {
       for (let y = 0; y < imageData.height; y++) {
         // Mh
-        var pixelX = (
-          (kernelX[0][0] * pixelAt(x - 1, y - 1)) +
-          (kernelX[0][1] * pixelAt(x, y - 1)) +
-          (kernelX[0][2] * pixelAt(x + 1, y - 1)) +
-          (kernelX[1][0] * pixelAt(x - 1, y)) +
-          (kernelX[1][1] * pixelAt(x, y)) +
-          (kernelX[1][2] * pixelAt(x + 1, y)) +
-          (kernelX[2][0] * pixelAt(x - 1, y + 1)) +
-          (kernelX[2][1] * pixelAt(x, y + 1)) +
-          (kernelX[2][2] * pixelAt(x + 1, y + 1))
+        var pixelXr = (
+          (kernelX[0][0] * getR(x - 1, y - 1)) +
+          (kernelX[0][1] * getR(x, y - 1)) +
+          (kernelX[0][2] * getR(x + 1, y - 1)) +
+          (kernelX[1][0] * getR(x - 1, y)) +
+          (kernelX[1][1] * getR(x, y)) +
+          (kernelX[1][2] * getR(x + 1, y)) +
+          (kernelX[2][0] * getR(x - 1, y + 1)) +
+          (kernelX[2][1] * getR(x, y + 1)) +
+          (kernelX[2][2] * getR(x + 1, y + 1))
+        );
+        var pixelXg = (
+          (kernelX[0][0] * getG(x - 1, y - 1)) +
+          (kernelX[0][1] * getG(x, y - 1)) +
+          (kernelX[0][2] * getG(x + 1, y - 1)) +
+          (kernelX[1][0] * getG(x - 1, y)) +
+          (kernelX[1][1] * getG(x, y)) +
+          (kernelX[1][2] * getG(x + 1, y)) +
+          (kernelX[2][0] * getG(x - 1, y + 1)) +
+          (kernelX[2][1] * getG(x, y + 1)) +
+          (kernelX[2][2] * getG(x + 1, y + 1))
+        );
+        var pixelXb = (
+          (kernelX[0][0] * getB(x - 1, y - 1)) +
+          (kernelX[0][1] * getB(x, y - 1)) +
+          (kernelX[0][2] * getB(x + 1, y - 1)) +
+          (kernelX[1][0] * getB(x - 1, y)) +
+          (kernelX[1][1] * getB(x, y)) +
+          (kernelX[1][2] * getB(x + 1, y)) +
+          (kernelX[2][0] * getB(x - 1, y + 1)) +
+          (kernelX[2][1] * getB(x, y + 1)) +
+          (kernelX[2][2] * getB(x + 1, y + 1))
         );
         // Mv
-        var pixelY = (
-          (kernelY[0][0] * pixelAt(x - 1, y - 1)) +
-          (kernelY[0][1] * pixelAt(x, y - 1)) +
-          (kernelY[0][2] * pixelAt(x + 1, y - 1)) +
-          (kernelY[1][0] * pixelAt(x - 1, y)) +
-          (kernelY[1][1] * pixelAt(x, y)) +
-          (kernelY[1][2] * pixelAt(x + 1, y)) +
-          (kernelY[2][0] * pixelAt(x - 1, y + 1)) +
-          (kernelY[2][1] * pixelAt(x, y + 1)) +
-          (kernelY[2][2] * pixelAt(x + 1, y + 1))
+        var pixelYr = (
+          (kernelY[0][0] * getR(x - 1, y - 1)) +
+          (kernelY[0][1] * getR(x, y - 1)) +
+          (kernelY[0][2] * getR(x + 1, y - 1)) +
+          (kernelY[1][0] * getR(x - 1, y)) +
+          (kernelY[1][1] * getR(x, y)) +
+          (kernelY[1][2] * getR(x + 1, y)) +
+          (kernelY[2][0] * getR(x - 1, y + 1)) +
+          (kernelY[2][1] * getR(x, y + 1)) +
+          (kernelY[2][2] * getR(x + 1, y + 1))
+        );
+        var pixelYg = (
+          (kernelY[0][0] * getG(x - 1, y - 1)) +
+          (kernelY[0][1] * getG(x, y - 1)) +
+          (kernelY[0][2] * getG(x + 1, y - 1)) +
+          (kernelY[1][0] * getG(x - 1, y)) +
+          (kernelY[1][1] * getG(x, y)) +
+          (kernelY[1][2] * getG(x + 1, y)) +
+          (kernelY[2][0] * getG(x - 1, y + 1)) +
+          (kernelY[2][1] * getG(x, y + 1)) +
+          (kernelY[2][2] * getG(x + 1, y + 1))
+        );
+        var pixelYb = (
+          (kernelY[0][0] * getB(x - 1, y - 1)) +
+          (kernelY[0][1] * getB(x, y - 1)) +
+          (kernelY[0][2] * getB(x + 1, y - 1)) +
+          (kernelY[1][0] * getB(x - 1, y)) +
+          (kernelY[1][1] * getB(x, y)) +
+          (kernelY[1][2] * getB(x + 1, y)) +
+          (kernelY[2][0] * getB(x - 1, y + 1)) +
+          (kernelY[2][1] * getB(x, y + 1)) +
+          (kernelY[2][2] * getB(x + 1, y + 1))
         );
         
         // Magnitud o tasa de cambio de intensidad
-        var magnitude = Math.sqrt((pixelX * pixelX) + (pixelY * pixelY))>>>0; // Raiz cuadrada de Gx^2 + Gy^2
-
-        r = getR(x,y);
-          g = getG(x,y);
-          b = getB(x,y);
-          imageData.data[index + 0] = magnitude;
-          imageData.data[index + 1] = magnitude;
-          imageData.data[index + 2] = magnitude; 
-
-          /*
-        if (magnitude == 0) {
-          r = getR(x,y);
-          g = getG(x,y);
-          b = getB(x,y);
-          imageData.data[index + 0] = 255;
-          imageData.data[index + 1] = 255;
-          imageData.data[index + 2] = 255;}
-        else if (magnitude == 1) {
-          r = getR(x,y);
-          g = getG(x,y);
-          b = getB(x,y);
-          imageData.data[index + 0] = magnitude;
-          imageData.data[index + 1] = magnitude;
-          imageData.data[index + 2] = magnitude;       
-        } else {
-          r = getR(x,y);
-          g = getG(x,y);
-          b = getB(x,y);
-          imageData.data[index + 0] = magnitude;
-          imageData.data[index + 1] = magnitude;
-          imageData.data[index + 2] = magnitude;}*/
-
-        //sobelData.push(magnitude, magnitude, magnitude, 255); // Array
+        var magnitudeR = Math.sqrt((pixelXr * pixelXr) + (pixelYr * pixelYr)); // Raiz cuadrada de Gx^2 + Gy^2
+        var magnitudeG = Math.sqrt((pixelXg * pixelXg) + (pixelYg * pixelYg)); // Raiz cuadrada de Gx^2 + Gy^2
+        var magnitudeB = Math.sqrt((pixelXb * pixelXb) + (pixelYb * pixelYb)); // Raiz cuadrada de Gx^2 + Gy^2
+       
+          imageDataCopy.data[index + 0] = magnitudeR;
+          imageDataCopy.data[index + 1] = magnitudeG;
+          imageDataCopy.data[index + 2] = magnitudeB;
       }
     }
-    context.putImageData(imageData, 0, 0);
+    
+    context.putImageData(imageDataCopy, 0, 0);
 }
 
 //<---------------------------------Conversores de formato ------------------------------>
