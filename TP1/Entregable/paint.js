@@ -449,9 +449,9 @@ function deteccionBordes(){
         var magnitudeG = Math.sqrt((pixelXg * pixelXg) + (pixelYg * pixelYg)); // Raiz cuadrada de Gx^2 + Gy^2
         var magnitudeB = Math.sqrt((pixelXb * pixelXb) + (pixelYb * pixelYb)); // Raiz cuadrada de Gx^2 + Gy^2
        
-          imageDataCopy.data[index + 0] = magnitudeR;
-          imageDataCopy.data[index + 1] = magnitudeG;
-          imageDataCopy.data[index + 2] = magnitudeB;
+          imageDataCopy.data[index + 0] = 255-magnitudeR; //HACIENDO 255 - MAGNITUDR QUEDA BASTANTE BIEN
+          imageDataCopy.data[index + 1] = 255-magnitudeG;
+          imageDataCopy.data[index + 2] = 255-magnitudeB;
       }
     }
     
