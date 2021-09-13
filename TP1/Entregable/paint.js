@@ -354,7 +354,6 @@ function escalaDeGrises(imageData){
 }
 
 //<---------- Matriz kernel para aplicar Sobel --------->
-
 let kernelX = [
   [-1,0,1],
   [-2,0,2],
@@ -448,10 +447,16 @@ function deteccionBordes(){
         var magnitudeR = Math.sqrt((pixelXr * pixelXr) + (pixelYr * pixelYr)); // Raiz cuadrada de Gx^2 + Gy^2
         var magnitudeG = Math.sqrt((pixelXg * pixelXg) + (pixelYg * pixelYg)); // Raiz cuadrada de Gx^2 + Gy^2
         var magnitudeB = Math.sqrt((pixelXb * pixelXb) + (pixelYb * pixelYb)); // Raiz cuadrada de Gx^2 + Gy^2
-       
-          imageDataCopy.data[index + 0] = magnitudeR;
-          imageDataCopy.data[index + 1] = magnitudeG;
-          imageDataCopy.data[index + 2] = magnitudeB;
+        
+        // imageDataCopy.data[index + 0] = magnitudeR;
+        // imageDataCopy.data[index + 1] = magnitudeG;
+        // imageDataCopy.data[index + 2] = magnitudeB;
+        
+        // Inverso para Sobel   
+        imageDataCopy.data[index + 0] = 255 - magnitudeR;
+        imageDataCopy.data[index + 1] = 255 - magnitudeG;
+        imageDataCopy.data[index + 2] = 255 - magnitudeB;
+
       }
     }
     
