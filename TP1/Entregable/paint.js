@@ -2,10 +2,16 @@
 let canvas = document.querySelector('#canvas');
 let context = canvas.getContext('2d');
 
+//<----------Variables de la imagen a original--------->
+// Se guardan para no perder el tamaño al descargarla
+let imageOriginal;
+let imageDataOriginal;
+let imageScaledWidthOriginal;
+let imageScaledHeightOriginal;
+
 //<----------Variables de la imagen a subir--------->
 let image;
 let imageData;
-let imageAspectRatio;
 let imageScaledWidth;
 let imageScaledHeight;
 
@@ -16,8 +22,9 @@ let color = "rgb(0,0,0)";
 let tamanio_pincel = 1;
 let tamanio_goma = 5;
 
-//<---------------------------------------Barra de herramientas-------------------------------------->
+//<--------------------------------------- Imagenes Miniatura -------------------------------------->
 
+// Carga las miniaturas de cada filtro
 function fotito(){
   negativo();
   document.getElementById("img-negativo").src = canvas.toDataURL("image/png");
@@ -36,6 +43,7 @@ function fotito(){
   original();
 }
 
+// Limpia las miniaturas al hacer click en nuevo
 function LimpiarFotitos(){
   document.getElementById("img-negativo").src = "";
   document.getElementById("img-sepia").src = "";
@@ -46,8 +54,10 @@ function LimpiarFotitos(){
   document.getElementById("img-bordes").src = "";
 }
 
-
+//<---------------------------------------Barra de herramientas-------------------------------------->
 //<---------------------------------------Pincel Goma Colores-------------------------------------->
+
+// Funciones para cortar cuando se deja de hacer click (lapiz o goma)
 function startPosition(){
   paint = true;
 }
@@ -57,6 +67,8 @@ function finishPosition(){
   context.beginPath();
 }
 
+// Funcion para dibujar o borrar
+// Se setean colores y tamaño segun corresponda
 function draw(e){
   if(!paint) return;
   if (lazo=="lapiz") {
@@ -91,6 +103,8 @@ function goma(){
   canvas.addEventListener("mousemove",draw);
 }
 
+// Se toma el color que se va a usar segun el css del 
+// elemento al que se le hizo click
 function colores(e){
   color = e.target.style.color;
   pincel();
@@ -116,55 +130,76 @@ function downloadImage(data, filename = 'untitled.jpeg') {  //DESCARGA LO QUE HA
 function subir(){ //SUBE UNA FOTO DESDE DISCO
   let input = document.querySelector('#input1'); //ACA TIENE QUE IR EL ELEMENTO HTML PARA SUBIR LA FOTO
   input.click();
-  // when click OK in the File Dialog
+  // Cuando se hace click en ok en el dialogo
   input.onchange = e => {
       limpiar();
-      // getting a hold of the file reference
+      // Se guarda el path al archivo
       let file = e.target.files[0];
 
-      // setting up the reader
+      // Levanto el archivo a memoria
       reader = new FileReader();
-      reader.readAsDataURL(file); // this is reading as data url
+      reader.readAsDataURL(file);
 
-      // here we tell the reader what to do when it's done reading...
+      // Cuando ya tengo el archivo en memoria
       reader.onload = readerEvent => {
-          let content = readerEvent.target.result; // this is the content!
+          let content = readerEvent.target.result; // aca tengo el contenido
 
           image = new Image();
-          //image.crossOrigin = 'Anonymous';
-
           image.src = content;
 
-          image.onload = function () {
-               imageAspectRatio = (1.0 * this.height) / this.width;
-               imageScaledWidth = canvas.width;
-               imageScaledHeight = canvas.width * imageAspectRatio;
-               canvas.width = imageScaledWidth;
-               canvas.height = imageScaledHeight;
-               /*canvas.width = this.width;
-               canvas.width = this.width;
-               imageScaledWidth = this.width;
-               imageScaledHeight = this.height;
-              // draw image on canvas
-              context.drawImage(this, 0, 0, canvas.width, canvas.height);*/
+          imageOriginal = new Image();
+          imageOriginal.src = content;
 
-              // draw image on canvas
+          // Cuando ya tengo la imagen en memoria
+          image.onload = function () {
+              // Modifico el tamaño en relacion al canvas
+
+              imageDataOriginal = this;
+              imageScaledWidthOriginal = this.width;
+              imageScaledHeightOriginal = this.height;
+
+              var imageAspectRatio = this.width / this.height;
+              var canvasAspectRatio = canvas.width / canvas.height;              
+
+              // Si el aspect ratio de la imagen es menor que el del canvas
+              // acomodo el alto de la imagen
+              if(imageAspectRatio < canvasAspectRatio) {
+                imageScaledHeight = canvas.height;
+                imageScaledWidth = this.width * (imageScaledHeight / this.height);
+              }
+
+               // Si el aspect ratio de la imagen es mayor que el del canvas
+              // acomodo el ancho de la imagen
+              else if(imageAspectRatio > canvasAspectRatio) {
+                imageScaledWidth = canvas.width
+                imageScaledHeight = this.height * (imageScaledWidth / this.width);
+              }
+
+              // Vamos bien con el tamaño
+              else {
+                imageScaledHeight = canvas.height;
+                imageScaledWidth = canvas.width;
+              }
+              
+
+              // Dibujar imagen en el canvas
               context.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-              fotito();
-              // get imageData from content of canvas
+              fotito(); // Cargo miniaturas
           }
       }
   }
 }
 //<----------------------------------------------------------------------->
 
+//<---------- Nuevo --------->
 function limpiar(){ //DEJA EL CANVAS EN BLANCO
-  context.fillStyle = "#FFFFFF"; // canvas background color
+  context.fillStyle = "#FFFFFF";
   context.fillRect(0, 0, canvas.width, canvas.height);
   image=null; //Limpia la foto por si dan en descargar no descargue lo antiguo
-  LimpiarFotitos();
+  LimpiarFotitos(); // Limpio las miniaturas
 }
 
+//<---------- Metodos para tomar valores RGB del imageData --------->
 function getR(x,y){
   let index = (x + y * imageData.width) * 4;
   return imageData.data[index + 0];
@@ -180,11 +215,12 @@ function getB(x,y){
   return imageData.data[index + 2];
 }
 
+//<------------------------------------------FILTROS-------------------------------------->
+
+// Foto Original
 function original(){ //Foto original
   context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
 }
-
-//<------------------------------------------FILTROS-------------------------------------->
 
 function negativo(){
   context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
@@ -203,7 +239,7 @@ function negativo(){
 }
 
 function brillo(){
-  var ajusteBrillo = 40;
+  var ajusteBrillo = 100;
   context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
   imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
   for (let x = 0; x < imageData.width; x++) {
@@ -318,6 +354,7 @@ for (let x = 0; x < imageData.width; x++) {
   context.putImageData(imageData, 0, 0);
 }
 
+//<---------- Filtro Saturacion --------->
 
 function saturacion(){
   context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
@@ -340,130 +377,7 @@ function saturacion(){
     context.putImageData(imageData, 0, 0);
 }
 
-// Funcion para deteccion de Bordes
-function escalaDeGrises(imageData){
-  var data = imageData.data;
-
-    for (var i = 0; i < data.length; i += 4) {
-      var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-      data[i]     = avg; // red
-      data[i + 1] = avg; // green
-      data[i + 2] = avg; // blue
-    }
-    return imageData;
-}
-
-//<---------- Matriz kernel para aplicar Sobel --------->
-let kernelX = [
-  [-1,0,1],
-  [-2,0,2],
-  [-1,0,1]
-];
-
-let kernelY = [
-  [-1,-2,-1],
-  [0,0,0],
-  [1,2,1]
-];
-
-function deteccionBordes(){
-    context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
-    imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-    imageDataCopy = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-    escalaDeGrises(imageData);
-    
-    for (let x = 0; x < imageData.width; x++) {
-      for (let y = 0; y < imageData.height; y++) {
-        // Mh
-        var pixelXr = (
-          (kernelX[0][0] * getR(x - 1, y - 1)) +
-          (kernelX[0][1] * getR(x, y - 1)) +
-          (kernelX[0][2] * getR(x + 1, y - 1)) +
-          (kernelX[1][0] * getR(x - 1, y)) +
-          (kernelX[1][1] * getR(x, y)) +
-          (kernelX[1][2] * getR(x + 1, y)) +
-          (kernelX[2][0] * getR(x - 1, y + 1)) +
-          (kernelX[2][1] * getR(x, y + 1)) +
-          (kernelX[2][2] * getR(x + 1, y + 1))
-        );
-        var pixelXg = (
-          (kernelX[0][0] * getG(x - 1, y - 1)) +
-          (kernelX[0][1] * getG(x, y - 1)) +
-          (kernelX[0][2] * getG(x + 1, y - 1)) +
-          (kernelX[1][0] * getG(x - 1, y)) +
-          (kernelX[1][1] * getG(x, y)) +
-          (kernelX[1][2] * getG(x + 1, y)) +
-          (kernelX[2][0] * getG(x - 1, y + 1)) +
-          (kernelX[2][1] * getG(x, y + 1)) +
-          (kernelX[2][2] * getG(x + 1, y + 1))
-        );
-        var pixelXb = (
-          (kernelX[0][0] * getB(x - 1, y - 1)) +
-          (kernelX[0][1] * getB(x, y - 1)) +
-          (kernelX[0][2] * getB(x + 1, y - 1)) +
-          (kernelX[1][0] * getB(x - 1, y)) +
-          (kernelX[1][1] * getB(x, y)) +
-          (kernelX[1][2] * getB(x + 1, y)) +
-          (kernelX[2][0] * getB(x - 1, y + 1)) +
-          (kernelX[2][1] * getB(x, y + 1)) +
-          (kernelX[2][2] * getB(x + 1, y + 1))
-        );
-        // Mv
-        var pixelYr = (
-          (kernelY[0][0] * getR(x - 1, y - 1)) +
-          (kernelY[0][1] * getR(x, y - 1)) +
-          (kernelY[0][2] * getR(x + 1, y - 1)) +
-          (kernelY[1][0] * getR(x - 1, y)) +
-          (kernelY[1][1] * getR(x, y)) +
-          (kernelY[1][2] * getR(x + 1, y)) +
-          (kernelY[2][0] * getR(x - 1, y + 1)) +
-          (kernelY[2][1] * getR(x, y + 1)) +
-          (kernelY[2][2] * getR(x + 1, y + 1))
-        );
-        var pixelYg = (
-          (kernelY[0][0] * getG(x - 1, y - 1)) +
-          (kernelY[0][1] * getG(x, y - 1)) +
-          (kernelY[0][2] * getG(x + 1, y - 1)) +
-          (kernelY[1][0] * getG(x - 1, y)) +
-          (kernelY[1][1] * getG(x, y)) +
-          (kernelY[1][2] * getG(x + 1, y)) +
-          (kernelY[2][0] * getG(x - 1, y + 1)) +
-          (kernelY[2][1] * getG(x, y + 1)) +
-          (kernelY[2][2] * getG(x + 1, y + 1))
-        );
-        var pixelYb = (
-          (kernelY[0][0] * getB(x - 1, y - 1)) +
-          (kernelY[0][1] * getB(x, y - 1)) +
-          (kernelY[0][2] * getB(x + 1, y - 1)) +
-          (kernelY[1][0] * getB(x - 1, y)) +
-          (kernelY[1][1] * getB(x, y)) +
-          (kernelY[1][2] * getB(x + 1, y)) +
-          (kernelY[2][0] * getB(x - 1, y + 1)) +
-          (kernelY[2][1] * getB(x, y + 1)) +
-          (kernelY[2][2] * getB(x + 1, y + 1))
-        );
-        
-        // Magnitud o tasa de cambio de intensidad
-        var magnitudeR = Math.sqrt((pixelXr * pixelXr) + (pixelYr * pixelYr)); // Raiz cuadrada de Gx^2 + Gy^2
-        var magnitudeG = Math.sqrt((pixelXg * pixelXg) + (pixelYg * pixelYg)); // Raiz cuadrada de Gx^2 + Gy^2
-        var magnitudeB = Math.sqrt((pixelXb * pixelXb) + (pixelYb * pixelYb)); // Raiz cuadrada de Gx^2 + Gy^2
-        
-        // imageDataCopy.data[index + 0] = magnitudeR;
-        // imageDataCopy.data[index + 1] = magnitudeG;
-        // imageDataCopy.data[index + 2] = magnitudeB;
-        
-        // Inverso para Sobel   
-        imageDataCopy.data[index + 0] = 255 - magnitudeR;
-        imageDataCopy.data[index + 1] = 255 - magnitudeG;
-        imageDataCopy.data[index + 2] = 255 - magnitudeB;
-
-      }
-    }
-    
-    context.putImageData(imageDataCopy, 0, 0);
-}
-
-//<---------------------------------Conversores de formato ------------------------------>
+//<--------------------------------- Conversores de formato------------------------------>
 function rgbToHsl(r, g, b) {
   r =r/255;
   g =g/255;
@@ -512,6 +426,127 @@ return [r * 255, g * 255, b * 255];
 
 //<--------------------------------------------------------------------------------> 
 
+//<---------- Filtro Deteccion de Bordes --------->
+
+// Matriz de Sobel para filtro de deteccion de bordes
+let kernelX = [
+  [-1,0,1],
+  [-2,0,2],
+  [-1,0,1]
+];
+
+let kernelY = [
+  [-1,-2,-1],
+  [0,0,0],
+  [1,2,1]
+];
+
+function escalaDeGrises(imageData){
+  var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+      var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+      data[i]     = avg;
+      data[i + 1] = avg;
+      data[i + 2] = avg;
+    }
+    return imageData;
+}
+
+function deteccionBordes(){
+    context.drawImage(image, 0, 0, imageScaledWidth, imageScaledHeight);
+    imageData = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+    // Se guarda una copia de la imagen para los calculos del gradiente
+    imageDataCopy = context.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+    // Se pasa a escala de grises antes de aplicar sobel
+    escalaDeGrises(imageData);
+    
+    for (let x = 0; x < imageData.width; x++) {
+      for (let y = 0; y < imageData.height; y++) {
+        // Matriz h
+        var pixelXr = (
+          (kernelX[0][0] * getR(x - 1, y - 1)) +
+          (kernelX[0][1] * getR(x, y - 1)) +
+          (kernelX[0][2] * getR(x + 1, y - 1)) +
+          (kernelX[1][0] * getR(x - 1, y)) +
+          (kernelX[1][1] * getR(x, y)) +
+          (kernelX[1][2] * getR(x + 1, y)) +
+          (kernelX[2][0] * getR(x - 1, y + 1)) +
+          (kernelX[2][1] * getR(x, y + 1)) +
+          (kernelX[2][2] * getR(x + 1, y + 1))
+        );
+        var pixelXg = (
+          (kernelX[0][0] * getG(x - 1, y - 1)) +
+          (kernelX[0][1] * getG(x, y - 1)) +
+          (kernelX[0][2] * getG(x + 1, y - 1)) +
+          (kernelX[1][0] * getG(x - 1, y)) +
+          (kernelX[1][1] * getG(x, y)) +
+          (kernelX[1][2] * getG(x + 1, y)) +
+          (kernelX[2][0] * getG(x - 1, y + 1)) +
+          (kernelX[2][1] * getG(x, y + 1)) +
+          (kernelX[2][2] * getG(x + 1, y + 1))
+        );
+        var pixelXb = (
+          (kernelX[0][0] * getB(x - 1, y - 1)) +
+          (kernelX[0][1] * getB(x, y - 1)) +
+          (kernelX[0][2] * getB(x + 1, y - 1)) +
+          (kernelX[1][0] * getB(x - 1, y)) +
+          (kernelX[1][1] * getB(x, y)) +
+          (kernelX[1][2] * getB(x + 1, y)) +
+          (kernelX[2][0] * getB(x - 1, y + 1)) +
+          (kernelX[2][1] * getB(x, y + 1)) +
+          (kernelX[2][2] * getB(x + 1, y + 1))
+        );
+        
+        // Matriz w
+        var pixelYr = (
+          (kernelY[0][0] * getR(x - 1, y - 1)) +
+          (kernelY[0][1] * getR(x, y - 1)) +
+          (kernelY[0][2] * getR(x + 1, y - 1)) +
+          (kernelY[1][0] * getR(x - 1, y)) +
+          (kernelY[1][1] * getR(x, y)) +
+          (kernelY[1][2] * getR(x + 1, y)) +
+          (kernelY[2][0] * getR(x - 1, y + 1)) +
+          (kernelY[2][1] * getR(x, y + 1)) +
+          (kernelY[2][2] * getR(x + 1, y + 1))
+        );
+        var pixelYg = (
+          (kernelY[0][0] * getG(x - 1, y - 1)) +
+          (kernelY[0][1] * getG(x, y - 1)) +
+          (kernelY[0][2] * getG(x + 1, y - 1)) +
+          (kernelY[1][0] * getG(x - 1, y)) +
+          (kernelY[1][1] * getG(x, y)) +
+          (kernelY[1][2] * getG(x + 1, y)) +
+          (kernelY[2][0] * getG(x - 1, y + 1)) +
+          (kernelY[2][1] * getG(x, y + 1)) +
+          (kernelY[2][2] * getG(x + 1, y + 1))
+        );
+        var pixelYb = (
+          (kernelY[0][0] * getB(x - 1, y - 1)) +
+          (kernelY[0][1] * getB(x, y - 1)) +
+          (kernelY[0][2] * getB(x + 1, y - 1)) +
+          (kernelY[1][0] * getB(x - 1, y)) +
+          (kernelY[1][1] * getB(x, y)) +
+          (kernelY[1][2] * getB(x + 1, y)) +
+          (kernelY[2][0] * getB(x - 1, y + 1)) +
+          (kernelY[2][1] * getB(x, y + 1)) +
+          (kernelY[2][2] * getB(x + 1, y + 1))
+        );
+        
+        // Magnitud o tasa de cambio de intensidad
+        var magnitude = Math.sqrt((pixelXr * pixelXr) + (pixelYr * pixelYr)); // Raiz cuadrada de x^2 + y^2
+        
+        imageDataCopy.data[index + 0] = magnitude;
+        imageDataCopy.data[index + 1] = magnitude;
+        imageDataCopy.data[index + 2] = magnitude;
+        
+      }
+    }
+    
+    context.putImageData(imageDataCopy, 0, 0);
+}
+
+//<--------------------------------------------------------------------------------> 
 
 //<-------------------------------------Eventos-------------------------------------------> 
 document.querySelector("#subir").addEventListener("click",subir);
