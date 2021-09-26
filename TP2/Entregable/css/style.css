@@ -1,0 +1,25 @@
+canvas {
+  border: 5px solid black;
+}
+
+@font-face {
+  font-family: 'Casino';
+  src: local('icomoonregular'),
+       url('../fonts/CasinoShadow.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-strecht: condensed;
+  unicode-range: "U+0-10FFFF";
+}
+
+.casinofont {
+  font-family: 'Casino';
+  font-size: 10em;
+  background: linear-gradient(goldenrod,70%,black);
+  -webkit-background-clip: text; /* Aplica el gradiente al texto que esta transparente */
+  color: transparent;  
+}
+
+body {
+  text-align:center;
+}
