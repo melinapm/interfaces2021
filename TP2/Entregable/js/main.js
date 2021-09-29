@@ -19,7 +19,8 @@ function clearCanvas(){
 }
 
 // Cambiar por JSE6-7 - Modal jugar
-$("#jugarModal").modal('show');
+$('#jugarModal').modal({backdrop: 'static', keyboard: false})  
+
 
 document.querySelector("#jugar").addEventListener("click",newGame);
 
