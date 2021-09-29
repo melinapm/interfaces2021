@@ -24,10 +24,18 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="justify-content-center">
+            <div class="justify-content-center modalJuego">
               <input type="text" name="nombreJ1" id="nombreJ1" required value="Jugador 1"/>
-              <p> VS </p>
+              <h5> VS </h5>
               <input type="text" name="nombreJ2" id="nombreJ2" required value="Jugador 2"/>
+            </div>
+            <div class="justify-content-center modalJuego">
+              <select name="nLineas" id="nLineas">
+                <option value="4"> 4 en linea </option>
+                <option value="5"> 5 en linea </option>
+                <option value="6"> 6 en linea </option>
+                <option value="7"> 7 en linea </option>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
@@ -42,5 +50,9 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="js/figura.js"></script>
+  <script src="js/celda.js"></script>
+  <script src="js/caida.js"></script>
+  <script src="js/tablero.js"></script>
   <script src="js/main.js"></script>
 </html>
