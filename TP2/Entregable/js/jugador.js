@@ -1,5 +1,12 @@
+/*
+  # Clase Jugador
+  #
+  # Cada jugador se encarga de dibujar sus fichas al momento de instanciarse 
+*/
+
 class Jugador {
-  constructor(turno,cantfichas,color,posfichaini){
+  constructor(nombre,turno,cantfichas,color,posfichaini) {
+    this.nombre = nombre;
     this.turno = turno;
     this.fichas = new Array(cantfichas);
     this.color = color;
@@ -18,18 +25,27 @@ class Jugador {
       this.posYinicial += 50;
     }
   }
-  setTurno(boolean){
+
+  setTurno(boolean) {
     this.turno = boolean;
   }
-  drawFichitas(){
+
+  drawFichitas() {
     for (let i = 0; i < this.fichas.length; i++) {
       this.fichas[i].draw();
     }
   }
-  getTurno(){
+
+  getTurno() {
     return this.turno;
   }
-  getFichas(){
+
+  getFichas() {
     return this.fichas;
   }
+
+  getNombre() {
+    return this.nombre;
+  }
+
 }

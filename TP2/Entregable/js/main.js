@@ -13,6 +13,11 @@ fondo.onload = clearCanvas;
 let imgCasilleroVacio = new Image();
 imgCasilleroVacio.src = './imagenes/casillerovacio.png';
 
+// Foto de fichas
+let fichas;
+let fichaimg = new Image();
+fichaimg.src = './imagenes/ficha_J1.png';
+
 // Carga el canvas con la imagen de fondo y el tamaño predefinido
 function clearCanvas(){
   context.drawImage(fondo, 0, 0, canvas.width, canvas.height);
@@ -21,23 +26,175 @@ function clearCanvas(){
 // Cambiar por JSE6-7 - Modal jugar
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})  
 
+//Jugadores
+let nombreJ1 = document.querySelector("#nombreJ1").value;
+let nombreJ2 = document.querySelector("#nombreJ2").value;
+let jugadores = new Array(2);
 
-document.querySelector("#jugar").addEventListener("click",newGame);
+//Tablero
+let tablero;
+
+function imprimirTurno(){
+  if (jugadores[0].getTurno()==true) {
+    context.textAlign="center";
+    context.font="20pt Verdana";
+    context.fillStyle = "blue";
+    context.fillText(nombreJ1,500,30);
+  }
+  else {
+    context.textAlign="center";
+    context.font="20pt Verdana";
+    context.fillStyle = "red";
+    context.fillText(nombreJ2,500,30);
+  }
+}
+
+function imprimirJugadores(){
+  context.textAlign="center";
+  context.font="20pt Verdana";
+  context.fillStyle = "blue";
+  context.fillText(nombreJ1,80,40);
+  context.textAlign="center";
+  context.font="20pt Verdana";
+  context.fillStyle = "red";
+  context.fillText(nombreJ2,930,40);
+}
+
+function generateFichas(){
+  jugadores[0].drawFichitas();
+  jugadores[1].drawFichitas();
+}
+
+function limpiar(){
+  clearCanvas();
+  tablero.draw();
+}
+
+function drawFichas(){
+  limpiar();
+  jugadores[0].drawFichitas();
+  jugadores[1].drawFichitas();
+  imprimirJugadores();
+  imprimirTurno();
+}
+
+function findClickedFigure(x,y) { //Chequea si clickee una figura
+  let fichasjugador;
+  if (jugadores[0].getTurno()==true) {
+    fichasjugador=jugadores[0].getFichas();
+    for (let i = 0; i < fichasjugador.length; i++) {
+      if (fichasjugador[i].isPointInside(x,y)){
+        return fichasjugador[i];
+      }
+    }
+  }
+  else {
+    fichasjugador=jugadores[1].getFichas();
+    for (let i = 0; i < fichasjugador.length; i++) {
+      if (fichasjugador[i].isPointInside(x,y)){
+        return fichasjugador[i];
+      }
+    }
+  }
+}
+
+let lastClickedFigure = null;
+let isMouseDown = false;
+
+
+
+function onMouseDown(event){
+  isMouseDown = true;
+  if (lastClickedFigure != null) {
+    lastClickedFigure.setHighlighted(false);
+    lastClickedFigure = null;
+  }
+  let clickedfigure = findClickedFigure(event.layerX, event.layerY);
+  if (clickedfigure != null ) {
+    clickedfigure.setHighlighted(true);
+    lastClickedFigure = clickedfigure;
+  }
+  drawFichas();
+}
+
+function onMouseMoved(event){
+  if (isMouseDown && lastClickedFigure != null) {
+    lastClickedFigure.setPosition(event.layerX,event.layerY);
+    drawFichas();
+  }
+}
+
+function onMouseUp(event){
+  isMouseDown = false;
+  if (lastClickedFigure != null) {
+    let posxficha = lastClickedFigure.getPosX();
+    let posyficha = lastClickedFigure.getPosY();
+    let caidas = tablero.getCaidas();
+    let suma;
+    suma = 250+49*10;
+    if ((posyficha > 50 && posyficha < 95) && (posxficha>250 && posxficha<suma)) {
+      for (let i = 0; i < caidas.length; i++) {
+        if ((posyficha > 50 && posyficha   < 95) && (posxficha > caidas[i].getPosX() && posxficha < caidas[i].getPosX()+49)) {
+          let celda=tablero.tirarFicha(i);
+          if (celda != null) {
+            celda.setFicha(lastClickedFigure);
+            lastClickedFigure.setPosition(celda.getPosX()+25,celda.getPosY()+25);
+            lastClickedFigure.setUso();
+            if (tablero.checkganador(celda)==true) {
+
+              console.log("hola");
+            }
+            if (jugadores[0].getTurno()==true) {
+              jugadores[0].setTurno(false);
+              jugadores[1].setTurno(true);
+            }
+            else {
+              jugadores[1].setTurno(false);
+              jugadores[0].setTurno(true);
+            }
+          }
+          else {
+            lastClickedFigure.setPosition(lastClickedFigure.getPosXOriginal(),lastClickedFigure.getPosYOriginal());
+          }
+        }
+      }
+    }
+    else {
+      lastClickedFigure.setPosition(lastClickedFigure.getPosXOriginal(),lastClickedFigure.getPosYOriginal());
+    }
+    drawFichas();
+  }
+  if (tablero.getGanador() != null) {
+    clearCanvas();
+    centerX = canvas.width/2;
+		context.textAlign="center";
+
+		context.font="60pt Verdana";
+		context.fillStyle = "blue";
+		context.fillText("GANADOR",centerX,60);
+
+		context.font="40pt Verdana";
+		context.strokeStyle="green";
+		context.lineWidth = 2;
+		context.strokeText(tablero.getGanador(),centerX,120);
+
+    canvas.removeEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
+    canvas.removeEventListener('mouseup',onMouseUp,false);
+    canvas.removeEventListener('mousemove',onMouseMoved,false);
+  }
+}
 
 function newGame(){
   // Oculto el modal
   $("#jugarModal").modal('hide');
 
   // Variables cargadas por input
-  let nombreJ1 = document.querySelector("#nombreJ1").value;
-  let nombreJ2 = document.querySelector("#nombreJ2").value;
   let nLineas = document.querySelector("#nLineas").value;
   let fichas = 0;
   let columnas = 0;
 
   switch (nLineas) {
     case "4":
-      console.log(nLineas);
       filas = 6;
       columnas = 7;
       break;
@@ -60,4 +217,16 @@ function newGame(){
   tablero = new Tablero(filas,columnas, imgCasilleroVacio);
   tablero.draw();
 
+  // Crea los jugadores y las fichas
+  
+  let cantfichas = parseInt((filas*columnas)/2);
+  jugadores[0] = new Jugador(nombreJ1,true,cantfichas,"blue",40);
+  jugadores[1] = new Jugador(nombreJ2,false,cantfichas,"red",canvasWidth-40);
+  jugadores[0].drawFichitas();
+  jugadores[1].drawFichitas();
+  canvas.addEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
+  canvas.addEventListener('mouseup',onMouseUp,false);
+  canvas.addEventListener('mousemove',onMouseMoved,false);
 }
+
+document.querySelector("#jugar").addEventListener("click",newGame);
