@@ -27,37 +27,38 @@ function clearCanvas(){
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})  
 
 //Jugadores
-let nombreJ1 = document.querySelector("#nombreJ1").value;
-let nombreJ2 = document.querySelector("#nombreJ2").value;
+let nombreJ1;
+let nombreJ2;
 let jugadores = new Array(2);
 
 //Tablero
 let tablero;
+let columnas = 0;
 
 function imprimirTurno(){
   if (jugadores[0].getTurno()==true) {
     context.textAlign="center";
     context.font="20pt Verdana";
     context.fillStyle = "blue";
-    context.fillText(nombreJ1,500,30);
+    context.fillText("Juega " + nombreJ1, canvas.width/2 ,30);
   }
   else {
     context.textAlign="center";
     context.font="20pt Verdana";
     context.fillStyle = "red";
-    context.fillText(nombreJ2,500,30);
+    context.fillText("Juega " + nombreJ2, canvas.width/2 ,30);
   }
 }
 
 function imprimirJugadores(){
-  context.textAlign="center";
+  context.textAlign="left";
   context.font="20pt Verdana";
   context.fillStyle = "blue";
-  context.fillText(nombreJ1,80,40);
-  context.textAlign="center";
+  context.fillText(nombreJ1, 10 ,30);
+  context.textAlign="right";
   context.font="20pt Verdana";
   context.fillStyle = "red";
-  context.fillText(nombreJ2,930,40);
+  context.fillText(nombreJ2, canvas.width - 10 ,30);
 }
 
 function generateFichas(){
@@ -101,8 +102,6 @@ function findClickedFigure(x,y) { //Chequea si clickee una figura
 let lastClickedFigure = null;
 let isMouseDown = false;
 
-
-
 function onMouseDown(event){
   isMouseDown = true;
   if (lastClickedFigure != null) {
@@ -124,15 +123,20 @@ function onMouseMoved(event){
   }
 }
 
-function onMouseUp(event){
+function onMouseUp(){
   isMouseDown = false;
   if (lastClickedFigure != null) {
     let posxficha = lastClickedFigure.getPosX();
     let posyficha = lastClickedFigure.getPosY();
     let caidas = tablero.getCaidas();
-    let suma;
-    suma = 250+49*10;
-    if ((posyficha > 50 && posyficha < 95) && (posxficha>250 && posxficha<suma)) {
+
+    // Se calcula la zona de caida de forma dinamica en relacion a la cantidad de columnas
+    let maxValorCaida;
+    maxValorCaida = (canvas.width /2 ) + (50 * columnas / 2)
+    let minValorCaida;
+    minValorCaida = (canvas.width /2 ) - (50 * columnas / 2)
+
+    if ((posyficha > 50 && posyficha < 95) && (posxficha > minValorCaida && posxficha < maxValorCaida)) {
       for (let i = 0; i < caidas.length; i++) {
         if ((posyficha > 50 && posyficha   < 95) && (posxficha > caidas[i].getPosX() && posxficha < caidas[i].getPosX()+49)) {
           let celda=tablero.tirarFicha(i);
@@ -140,10 +144,7 @@ function onMouseUp(event){
             celda.setFicha(lastClickedFigure);
             lastClickedFigure.setPosition(celda.getPosX()+25,celda.getPosY()+25);
             lastClickedFigure.setUso();
-            if (tablero.checkganador(celda)==true) {
-
-              console.log("hola");
-            }
+            tablero.checkganador(celda); // Valido por cada caida de fiche si alguien gano
             if (jugadores[0].getTurno()==true) {
               jugadores[0].setTurno(false);
               jugadores[1].setTurno(true);
@@ -184,14 +185,16 @@ function onMouseUp(event){
   }
 }
 
+
 function newGame(){
+  // Asigno el nombre de los jugadores
+  nombreJ1 = document.querySelector("#nombreJ1").value;
+  nombreJ2 = document.querySelector("#nombreJ2").value;
   // Oculto el modal
   $("#jugarModal").modal('hide');
 
   // Variables cargadas por input
   let nLineas = document.querySelector("#nLineas").value;
-  let fichas = 0;
-  let columnas = 0;
 
   switch (nLineas) {
     case "4":

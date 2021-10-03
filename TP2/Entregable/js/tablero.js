@@ -13,7 +13,7 @@ class Tablero {
   constructor(filas,columnas) {
     this.filas=filas;
     this.columnas=columnas;
-    this.posicion = (canvas.width-50*columnas)/2;
+    this.posicion = (canvas.width - 50 * columnas)/2;
     this.caidas = new Array(columnas);
     this.matriz = new Array(columnas);
     this.ganador=null;
