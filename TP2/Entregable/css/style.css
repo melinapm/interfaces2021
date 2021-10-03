@@ -19,11 +19,6 @@ canvas {
   -webkit-background-clip: text; /* Aplica el gradiente al texto que esta transparente */
   color: transparent;  
 }
-
-body {
-  text-align:center;
-}
-
 .modalJuego {
   text-align:center;
   padding: 1em;

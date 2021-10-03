@@ -23,6 +23,9 @@ function clearCanvas(){
   context.drawImage(fondo, 0, 0, canvas.width, canvas.height);
 }
 
+// Timer
+// let timeOutTurno = 5;
+
 // Cambiar por JSE6-7 - Modal jugar
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})  
 
@@ -51,14 +54,14 @@ function imprimirTurno(){
 }
 
 function imprimirJugadores(){
-  context.textAlign="left";
-  context.font="20pt Verdana";
-  context.fillStyle = "blue";
-  context.fillText(nombreJ1, 10 ,30);
-  context.textAlign="right";
-  context.font="20pt Verdana";
-  context.fillStyle = "red";
-  context.fillText(nombreJ2, canvas.width - 10 ,30);
+   context.textAlign="left";
+   context.font="20pt Verdana";
+   context.fillStyle = "blue";
+   context.fillText(nombreJ1, 10 ,30);
+   context.textAlign="right";
+   context.font="20pt Verdana";
+   context.fillStyle = "red";
+   context.fillText(nombreJ2, canvas.width - 10 ,30);
 }
 
 function generateFichas(){
@@ -230,6 +233,32 @@ function newGame(){
   canvas.addEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
   canvas.addEventListener('mouseup',onMouseUp,false);
   canvas.addEventListener('mousemove',onMouseMoved,false);
+  //alertaTras5seg();
 }
 
 document.querySelector("#jugar").addEventListener("click",newGame);
+document.querySelector("#nuevoJuego").addEventListener("click", function(){
+  $("#jugarModal").modal('show');
+});
+
+
+// Terminar
+// function alertaTras5seg() {
+//   var timer = timeOutTurno, minutes, seconds;
+//   setInterval(function () {
+//       minutes = parseInt(timer / 60, 10);
+//       seconds = parseInt(timer % 60, 10);
+
+//       minutes = minutes < 10 ? "0" + minutes : minutes;
+//       seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//       timeOutTurno = minutes + ":" + seconds;
+//       if (--timer < 0) {
+//           timer = timeOutTurno;
+//       }
+//     imprimirJugadores();
+//   }, 1000);
+// }
+
+
+
