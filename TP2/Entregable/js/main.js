@@ -23,11 +23,14 @@ function clearCanvas(){
   context.drawImage(fondo, 0, 0, canvas.width, canvas.height);
 }
 
-// Timer
-// let timeOutTurno = 5;
+// Variables para el timer del turno
+let tiempoTurnoSeg = 30;
+let timeOutTurnoMostrado;
+let timerTurno;
 
-// Cambiar por JSE6-7 - Modal jugar
+// Hago que no se pueda hacer click por fuera del modal ;)
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})  
+
 
 //Jugadores
 let nombreJ1;
@@ -38,28 +41,30 @@ let jugadores = new Array(2);
 let tablero;
 let columnas = 0;
 
+
+// Funciones del Juego
+
 function imprimirTurno(){
+  context.textAlign="center";
+  context.font="20pt Verdana";
+  context.fillStyle = "grey";
+  context.shadowOffsetX = 3;
+  context.shadowOffsetY = 3;
+  context.shadowColor = "rgba(0,0,0,0.3)";
   if (jugadores[0].getTurno()==true) {
-    context.textAlign="center";
-    context.font="20pt Verdana";
-    context.fillStyle = "blue";
-    context.fillText("Juega " + nombreJ1, canvas.width/2 ,30);
+    context.fillText("Juega " + nombreJ1 + " - " + timeOutTurnoMostrado, canvas.width/2 ,30);
   }
   else {
-    context.textAlign="center";
-    context.font="20pt Verdana";
-    context.fillStyle = "red";
-    context.fillText("Juega " + nombreJ2, canvas.width/2 ,30);
+    context.fillText("Juega " + nombreJ2 + " - " + timeOutTurnoMostrado, canvas.width/2 ,30);
   }
 }
 
 function imprimirJugadores(){
-   context.textAlign="left";
    context.font="20pt Verdana";
+   context.textAlign="left";
    context.fillStyle = "blue";
    context.fillText(nombreJ1, 10 ,30);
    context.textAlign="right";
-   context.font="20pt Verdana";
    context.fillStyle = "red";
    context.fillText(nombreJ2, canvas.width - 10 ,30);
 }
@@ -147,7 +152,10 @@ function onMouseUp(){
             celda.setFicha(lastClickedFigure);
             lastClickedFigure.setPosition(celda.getPosX()+25,celda.getPosY()+25);
             lastClickedFigure.setUso();
-            tablero.checkganador(celda); // Valido por cada caida de fiche si alguien gano
+            tablero.checkganador(celda); // Valido por cada caida de ficha si alguien gano
+            // Reseteo el timer y lo inicio para el cambio de turno
+            clearInterval(timerTurno);
+            alertaTurno();
             if (jugadores[0].getTurno()==true) {
               jugadores[0].setTurno(false);
               jugadores[1].setTurno(true);
@@ -233,32 +241,45 @@ function newGame(){
   canvas.addEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
   canvas.addEventListener('mouseup',onMouseUp,false);
   canvas.addEventListener('mousemove',onMouseMoved,false);
-  //alertaTras5seg();
+  clearInterval(timerTurno); // Reseteo el timer por si es un nuevo juego
+  alertaTurno(); // Inicia el timer
 }
 
+// Boton modal Jugar
 document.querySelector("#jugar").addEventListener("click",newGame);
+// Boton nuevo juego
 document.querySelector("#nuevoJuego").addEventListener("click", function(){
   $("#jugarModal").modal('show');
 });
 
 
-// Terminar
-// function alertaTras5seg() {
-//   var timer = timeOutTurno, minutes, seconds;
-//   setInterval(function () {
-//       minutes = parseInt(timer / 60, 10);
-//       seconds = parseInt(timer % 60, 10);
-
-//       minutes = minutes < 10 ? "0" + minutes : minutes;
-//       seconds = seconds < 10 ? "0" + seconds : seconds;
-
-//       timeOutTurno = minutes + ":" + seconds;
-//       if (--timer < 0) {
-//           timer = timeOutTurno;
-//       }
-//     imprimirJugadores();
-//   }, 1000);
-// }
-
-
-
+// Funcion para llevar el timer de cada turno
+function alertaTurno() {
+  timeOutTurnoMostrado = tiempoTurnoSeg;
+  duration = timeOutTurnoMostrado;
+  var timer = duration, seconds; // Variables del interval
+  
+  timerTurno = setInterval(function () {
+    
+       seconds = parseInt(timer % 60, 10); // Paso el valor a segundos
+       seconds = seconds < 10 ? "0" + seconds : seconds; // Si los seg son < 10 que se muestren como 0? (01,02 ...)
+       timeOutTurnoMostrado = "0:" + seconds; // Variable que se muestra en la pantalla
+       
+       if (--timer <= 0) { // Fin del turno!
+          // Vuelvo todo al inicio y cambio el turno del jugador
+          timer = duration;
+          timeOutTurnoMostrado = tiempoTurnoSeg;
+          duration = timeOutTurnoMostrado;
+          timer = duration, seconds;
+          if (jugadores[0].getTurno()==true) {
+            jugadores[0].setTurno(false);
+            jugadores[1].setTurno(true);
+          }
+          else {
+            jugadores[1].setTurno(false);
+            jugadores[0].setTurno(true);
+          }     
+       }
+     drawFichas(); // Llamo para mostrar las fichas, la info de los jugadores y el tiempo de turno
+   }, 1000);
+}
