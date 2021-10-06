@@ -196,7 +196,6 @@ function onMouseUp(){
     
   }
   timerJuego();
-  console.log("Aca");
 }
 
 
