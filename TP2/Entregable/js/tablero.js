@@ -53,12 +53,12 @@ class Tablero {
     let columnaactual = celdaactual.getColumnaCelda();
     let filaactual = celdaactual.getFilaCelda();
     let cantfichas = 0;
-    if (filaactual<this.filas-3) { //CHEQUEA PARA ABAJO
+    if (filaactual<this.filas-(nLineas-1)) { //CHEQUEA PARA ABAJO
       cantfichas=0;
       for (let i = filaactual; i < this.filas; i++) {
         if (this.matriz[columnaactual][i].getFicha().getColor()==color) {
           cantfichas++;
-          if (cantfichas==4) {
+          if (cantfichas==nLineas) {
             if (color=="blue") {
               this.ganador="Jugador 1";
             }
@@ -70,13 +70,13 @@ class Tablero {
         }
       }
     }
-    if(columnaactual>=3) { //CHEQUEA DERECHA
+    if(columnaactual>=(nLineas-1)) { //CHEQUEA DERECHA
       cantfichas=0;
       for (let i = columnaactual; i >= 0; i--) {
         if (this.matriz[i][filaactual].getFicha() != null) {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
-            if (cantfichas==4) {
+            if (cantfichas==nLineas) {
               if (color=="blue") {
                 this.ganador="Jugador 1";
               }
@@ -92,13 +92,13 @@ class Tablero {
         }
       }
     }
-    if(columnaactual<this.columnas-3) { //CHEQUEA izquierda
+    if(columnaactual<this.columnas-(nLineas-1)) { //CHEQUEA izquierda
       cantfichas=0;
       for (let i = columnaactual; i < this.columnas; i++) {
         if (this.matriz[i][filaactual].getFicha () != null) {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
-            if (cantfichas==4) {
+            if (cantfichas==nLineas) {
               if (color=="blue") {
                 this.ganador="Jugador 1";
               }
@@ -114,7 +114,7 @@ class Tablero {
         }
       }
     }
-    if (filaactual<this.filas-3 && columnaactual>=3) { //chequea diagonal izquierda
+    if (filaactual<this.filas-(nLineas-1) && columnaactual>=(nLineas-1)) { //chequea diagonal izquierda
       cantfichas = 0;
       let colaux = columnaactual;
       for (let i = filaactual ; i < this.filas; i++) {
@@ -122,7 +122,7 @@ class Tablero {
           if(this.matriz[colaux][i].getFicha().getColor()==color){
             cantfichas++;
             colaux--;
-            if (cantfichas==4) {
+            if (cantfichas==nLineas) {
               if (color=="blue") {
                 this.ganador="Jugador 1";
               }
@@ -138,7 +138,7 @@ class Tablero {
         }
       }
     }
-    if (filaactual<this.filas-3 && columnaactual<this.columnas-3) {
+    if (filaactual<this.filas-(nLineas-1) && columnaactual<this.columnas-(nLineas-1)) {
       cantfichas = 0;
       let colaux = columnaactual;
       for (let i = filaactual ; i < this.filas; i++) {
@@ -146,7 +146,8 @@ class Tablero {
           if(this.matriz[colaux][i].getFicha().getColor()==color){
             cantfichas++;
             colaux++;
-            if (cantfichas==4) {
+            if (cantfichas==nLineas) {  
+              console.log("llego");
               if (color=="blue") {
                 this.ganador="Jugador 1";
               }

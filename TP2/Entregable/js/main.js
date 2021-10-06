@@ -40,6 +40,7 @@ let jugadores = new Array(2);
 //Tablero
 let tablero;
 let columnas = 0;
+let nLineas;
 
 
 // Funciones del Juego
@@ -178,21 +179,13 @@ function onMouseUp(){
   }
   if (tablero.getGanador() != null) {
     clearCanvas();
-    centerX = canvas.width/2;
-		context.textAlign="center";
-
-		context.font="60pt Verdana";
-		context.fillStyle = "blue";
-		context.fillText("GANADOR",centerX,60);
-
-		context.font="40pt Verdana";
-		context.strokeStyle="green";
-		context.lineWidth = 2;
-		context.strokeText(tablero.getGanador(),centerX,120);
+    document.querySelector("#nombreGanador").innerHTML = "¡Gano " + tablero.getGanador() + "¡";
+    $("#modalGanador").modal('show');
 
     canvas.removeEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
     canvas.removeEventListener('mouseup',onMouseUp,false);
     canvas.removeEventListener('mousemove',onMouseMoved,false);
+    
   }
 }
 
@@ -204,27 +197,11 @@ function newGame(){
   // Oculto el modal
   $("#jugarModal").modal('hide');
 
-  // Variables cargadas por input
-  let nLineas = document.querySelector("#nLineas").value;
-
-  switch (nLineas) {
-    case "4":
-      filas = 6;
-      columnas = 7;
-      break;
-    case "5":
-      filas = 7;
-      columnas = 8;
-      break;
-    case "6":
-      filas = 8;
-      columnas = 9;
-      break;
-    case "7":
-      filas = 9;
-      columnas = 10;
-      break;
-  }
+  // Me traigo cual n en lineas voy a jugar como int
+  nLineas = parseInt(document.querySelector("#nLineas").value); 
+  // Calculo el tamaño del tablero en relacion a la cantidad de lineas
+  filas = nLineas + 2;
+  columnas = nLineas + 3;
 
   clearCanvas();
   // Dibujar Tablero
@@ -250,6 +227,10 @@ document.querySelector("#jugar").addEventListener("click",newGame);
 // Boton nuevo juego
 document.querySelector("#nuevoJuego").addEventListener("click", function(){
   $("#jugarModal").modal('show');
+});
+document.querySelector("#volverAJugar").addEventListener("click", function(){
+  $("#modalGanador").modal('hide');
+  newGame();
 });
 
 
