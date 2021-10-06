@@ -185,9 +185,9 @@ function onMouseUp(){
   if (tablero.getGanador() != null) {
     clearCanvas();
     if (tablero.getGanador() == "Jugador 1")
-      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[0].getNombre() + "¡";
+      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[0].getNombre() + "!";
     else
-      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[1].getNombre() + "¡";
+      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[1].getNombre() + "!";
     $("#modalGanador").modal('show');
 
     canvas.removeEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
@@ -243,7 +243,6 @@ document.querySelector("#nuevoJuego").addEventListener("click", function(){
 document.querySelector("#volverAJugar").addEventListener("click", function(){
   $("#modalGanador").modal('hide');
   newGame();
-  console.log(timeOutGlobal);
 });
 
 
@@ -282,5 +281,5 @@ function alertaTurno() {
 function timerJuego() {
   timeOutGlobal = window.setInterval(function(){
     $("#jugarModal").modal('show');
-  }, 10000);
+  }, timeOutGlobal);
 }
