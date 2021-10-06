@@ -19,6 +19,7 @@
         <div class="modal-content">
           <div class="modal-body">
             <div class="justify-content-center modalJuego">
+              <h4> Jugadores </h4>
               <input type="text" id="nombreJ1" value="Jugador 1" required/>
               <input type="color" id="colorJ1" value="#ff0000">
               <h5> VS </h5>
@@ -26,12 +27,17 @@
               <input type="color" id="colorJ2" value="#0000ff">
             </div>
             <div class="justify-content-center modalJuego">
+              <h4> Modalidad </h4>
               <select name="nLineas" id="nLineas">
                 <option value="4"> 4 en linea </option>
                 <option value="5"> 5 en linea </option>
                 <option value="6"> 6 en linea </option>
                 <option value="7"> 7 en linea </option>
               </select>
+            </div>
+            <div class="justify-content-center modalJuego">
+              <h5> Reglas </h5>
+                <p> El objetivo de este juego consiste en colocar n fichas en una fila contínua vertical, horizontal o diagonalmente (donde n corresponde a la modalidad elegida). </p> 
             </div>
           </div>
           <button id="jugar" type="button" class="btn btn-success">Jugar</button>
@@ -48,7 +54,7 @@
               <h1 id="nombreGanador"> </h1>
             </div>
           </div>
-          <button id="volverAJugar" type="button" class="btn btn-success">Vovler a jugar</button>
+          <button id="volverAJugar" type="button" class="btn btn-success">Volver a jugar</button>
         </div>
       </div>
     </div>

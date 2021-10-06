@@ -28,6 +28,9 @@ let tiempoTurnoSeg = 30;
 let timeOutTurnoMostrado;
 let timerTurno;
 
+// TimerGlobal del juego en milisegundos
+let timeOutGlobal = 60000;
+
 // Hago que no se pueda hacer click por fuera del modal ;)
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})
 
@@ -136,6 +139,7 @@ function onMouseMoved(event){
 function onMouseUp(){
   isMouseDown = false;
   if (lastClickedFigure != null) {
+    clearInterval(timeOutGlobal);
     let posxficha = lastClickedFigure.getPosX();
     let posyficha = lastClickedFigure.getPosY();
     let caidas = tablero.getCaidas();
@@ -191,6 +195,7 @@ function onMouseUp(){
     canvas.removeEventListener('mousemove',onMouseMoved,false);
     
   }
+  timerJuego();
 }
 
 
@@ -238,6 +243,7 @@ document.querySelector("#nuevoJuego").addEventListener("click", function(){
 document.querySelector("#volverAJugar").addEventListener("click", function(){
   $("#modalGanador").modal('hide');
   newGame();
+  console.log(timeOutGlobal);
 });
 
 
@@ -270,4 +276,11 @@ function alertaTurno() {
        }
      drawFichas(); // Llamo para mostrar las fichas, la info de los jugadores y el tiempo de turno
    }, 1000);
+}
+
+// Funcion para llevar el timer global del juego
+function timerJuego() {
+  timeOutGlobal = window.setInterval(function(){
+    $("#jugarModal").modal('show');
+  }, 10000);
 }
