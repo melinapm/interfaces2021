@@ -29,8 +29,7 @@ let timeOutTurnoMostrado;
 let timerTurno;
 
 // Hago que no se pueda hacer click por fuera del modal ;)
-$('#jugarModal').modal({backdrop: 'static', keyboard: false})  
-
+$('#jugarModal').modal({backdrop: 'static', keyboard: false})
 
 //Jugadores
 let nombreJ1;
@@ -179,7 +178,10 @@ function onMouseUp(){
   }
   if (tablero.getGanador() != null) {
     clearCanvas();
-    document.querySelector("#nombreGanador").innerHTML = "¡Gano " + tablero.getGanador() + "¡";
+    if (tablero.getGanador() == "Jugador 1")
+      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[0].getNombre() + "¡";
+    else
+      document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[1].getNombre() + "¡";
     $("#modalGanador").modal('show');
 
     canvas.removeEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
