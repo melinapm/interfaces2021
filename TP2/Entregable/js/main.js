@@ -34,6 +34,8 @@ $('#jugarModal').modal({backdrop: 'static', keyboard: false})
 //Jugadores
 let nombreJ1;
 let nombreJ2;
+let colorJ1;
+let colorJ2;
 let jugadores = new Array(2);
 
 //Tablero
@@ -62,10 +64,10 @@ function imprimirTurno(){
 function imprimirJugadores(){
    context.font="20pt Verdana";
    context.textAlign="left";
-   context.fillStyle = "blue";
+   context.fillStyle = colorJ1;
    context.fillText(nombreJ1, 10 ,30);
    context.textAlign="right";
-   context.fillStyle = "red";
+   context.fillStyle = colorJ2;
    context.fillText(nombreJ2, canvas.width - 10 ,30);
 }
 
@@ -196,6 +198,9 @@ function newGame(){
   // Asigno el nombre de los jugadores
   nombreJ1 = document.querySelector("#nombreJ1").value;
   nombreJ2 = document.querySelector("#nombreJ2").value;
+  // Asigno el color de los jugadores
+  colorJ1 = document.querySelector("#colorJ1").value;
+  colorJ2 = document.querySelector("#colorJ2").value;
   // Oculto el modal
   $("#jugarModal").modal('hide');
 
