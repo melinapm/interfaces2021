@@ -29,6 +29,7 @@ let timeOutTurnoMostrado;
 let timerTurno;
 
 // TimerGlobal del juego en milisegundos
+let timeOutGlobal;
 let segTimeOutGlobal = 60000;
 
 // Hago que no se pueda hacer click por fuera del modal ;)
