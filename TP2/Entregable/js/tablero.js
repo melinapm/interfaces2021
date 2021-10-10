@@ -10,7 +10,11 @@
 */
 
 class Tablero {
-  constructor(filas,columnas) {
+  constructor(filas,columnas,colorj1,colorj2,nombrej1,nombrej2) {
+    this.colorj1=colorj1;
+    this.colorj2=colorj2;
+    this.nombrej1=nombrej1;
+    this.nombrej2=nombrej2;
     this.filas=filas;
     this.columnas=columnas;
     this.posicion = (canvas.width - 50 * columnas)/2;
@@ -59,11 +63,11 @@ class Tablero {
         if (this.matriz[columnaactual][i].getFicha().getColor()==color) {
           cantfichas++;
           if (cantfichas==nLineas) {
-            if (color=="blue") {
-              this.ganador="Jugador 1";
+            if (color==colorj1) {
+              this.ganador=nombrej1;
             }
             else {
-              this.ganador="Jugador 2";
+              this.ganador=nombrej2;
             }
             return true;
           }
@@ -77,11 +81,11 @@ class Tablero {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
             if (cantfichas==nLineas) {
-              if (color=="blue") {
-                this.ganador="Jugador 1";
+              if (color==colorj1) {
+                this.ganador=nombrej1;
               }
               else {
-                this.ganador="Jugador 2";
+                this.ganador=nombrej2;
               }
               return true;
             }
@@ -99,11 +103,11 @@ class Tablero {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
             if (cantfichas==nLineas) {
-              if (color=="blue") {
-                this.ganador="Jugador 1";
+              if (color==colorj1) {
+                this.ganador=nombrej1;
               }
               else {
-                this.ganador="Jugador 2";
+                this.ganador=nombrej2;
               }
               return true;
             }
@@ -123,11 +127,11 @@ class Tablero {
             cantfichas++;
             colaux--;
             if (cantfichas==nLineas) {
-              if (color=="blue") {
-                this.ganador="Jugador 1";
+              if (color==colorj1) {
+                this.ganador=nombrej1;
               }
               else {
-                this.ganador="Jugador 2";
+                this.ganador=nombrej2;
               }
               return true;
             }
@@ -148,11 +152,11 @@ class Tablero {
             colaux++;
             if (cantfichas==nLineas) {  
               console.log("llego");
-              if (color=="blue") {
-                this.ganador="Jugador 1";
+              if (color==colorj1) {
+                this.ganador=nombrej1;
               }
               else {
-                this.ganador="Jugador 2";
+                this.ganador=nombrej2;
               }
               return true;
             }

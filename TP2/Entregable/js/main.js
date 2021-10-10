@@ -224,8 +224,8 @@ function newGame(){
   // Crea los jugadores y las fichas
   
   let cantfichas = parseInt((filas*columnas)/2);
-  jugadores[0] = new Jugador(nombreJ1,true,cantfichas,"blue",40);
-  jugadores[1] = new Jugador(nombreJ2,false,cantfichas,"red",canvasWidth-40);
+  jugadores[0] = new Jugador(nombreJ1,true,cantfichas,colorJ1,colorJ1,colorJ2,40);
+  jugadores[1] = new Jugador(nombreJ2,false,cantfichas,colorJ2,colorJ1,colorJ2,canvasWidth-40);
   jugadores[0].drawFichitas();
   jugadores[1].drawFichitas();
   canvas.addEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA

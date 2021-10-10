@@ -5,19 +5,21 @@
 */
 
 class Jugador {
-  constructor(nombre,turno,cantfichas,color,posfichaini) {
+  constructor(nombre,turno,cantfichas,color,colorj1,colorj2,posfichaini) {
     this.nombre = nombre;
     this.turno = turno;
     this.fichas = new Array(cantfichas);
     this.color = color;
+    this.colorj1 = colorj1;
+    this.colorj2 = colorj2;
     this.posfichaini = posfichaini;
     this.posYinicial = 80;
     for (let i = 0; i < cantfichas; i++) {
-      if (this.posYinicial>950 && this.color=="blue") {
+      if (this.posYinicial>950 && this.color==colorj1) {
         this.posfichaini += 50;
         this.posYinicial = 80;
       }
-      else if (this.posYinicial>950 && this.color=="red") {
+      else if (this.posYinicial>950 && this.color==colorj2) {
         this.posfichaini -= 50;
         this.posYinicial = 80;
       }
