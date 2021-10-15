@@ -218,7 +218,7 @@ function newGame(){
 
   clearCanvas();
   // Dibujar Tablero
-  tablero = new Tablero(filas,columnas, imgCasilleroVacio);
+  tablero = new Tablero(filas,columnas);
   tablero.draw();
 
   // Crea los jugadores y las fichas

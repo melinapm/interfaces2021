@@ -10,11 +10,11 @@
 */
 
 class Tablero {
-  constructor(filas,columnas,colorj1,colorj2,nombrej1,nombrej2) {
-    this.colorj1=colorj1;
-    this.colorj2=colorj2;
-    this.nombrej1=nombrej1;
-    this.nombrej2=nombrej2;
+  constructor(filas,columnas) {
+    this.colorj1=colorJ1;
+    this.colorj2=colorJ2;
+    this.nombrej1=nombreJ1;
+    this.nombrej2=nombreJ2;
     this.filas=filas;
     this.columnas=columnas;
     this.posicion = (canvas.width - 50 * columnas)/2;
@@ -63,11 +63,15 @@ class Tablero {
         if (this.matriz[columnaactual][i].getFicha().getColor()==color) {
           cantfichas++;
           if (cantfichas==nLineas) {
-            if (color==colorj1) {
-              this.ganador=nombrej1;
+            
+            
+            console.log("color: " + color);
+            console.log("colorj1: " + this.colorj1);
+            if (color==this.colorj1) {
+              this.ganador=this.nombrej1;
             }
             else {
-              this.ganador=nombrej2;
+              this.ganador=this.nombrej2;
             }
             return true;
           }
@@ -81,11 +85,11 @@ class Tablero {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
             if (cantfichas==nLineas) {
-              if (color==colorj1) {
-                this.ganador=nombrej1;
+              if (color==this.colorj1) {
+                this.ganador=this.nombrej1;
               }
               else {
-                this.ganador=nombrej2;
+                this.ganador=this.nombrej2;
               }
               return true;
             }
@@ -103,11 +107,11 @@ class Tablero {
           if (this.matriz[i][filaactual].getFicha().getColor()==color) {
             cantfichas++;
             if (cantfichas==nLineas) {
-              if (color==colorj1) {
-                this.ganador=nombrej1;
+              if (color==this.colorj1) {
+                this.ganador=this.nombrej1;
               }
               else {
-                this.ganador=nombrej2;
+                this.ganador=this.nombrej2;
               }
               return true;
             }
@@ -127,11 +131,11 @@ class Tablero {
             cantfichas++;
             colaux--;
             if (cantfichas==nLineas) {
-              if (color==colorj1) {
-                this.ganador=nombrej1;
+              if (color==this.colorj1) {
+                this.ganador=this.nombrej1;
               }
               else {
-                this.ganador=nombrej2;
+                this.ganador=this.nombrej2;
               }
               return true;
             }
@@ -150,13 +154,12 @@ class Tablero {
           if(this.matriz[colaux][i].getFicha().getColor()==color){
             cantfichas++;
             colaux++;
-            if (cantfichas==nLineas) {  
-              console.log("llego");
-              if (color==colorj1) {
-                this.ganador=nombrej1;
+            if (cantfichas==nLineas) {
+              if (color==this.colorj1) {
+                this.ganador=this.nombrej1;
               }
               else {
-                this.ganador=nombrej2;
+                this.ganador=this.nombrej2;
               }
               return true;
             }
