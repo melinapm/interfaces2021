@@ -15,11 +15,11 @@ class Jugador {
     this.posfichaini = posfichaini;
     this.posYinicial = 80;
     for (let i = 0; i < cantfichas; i++) {
-      if (this.posYinicial>950 && this.color==colorj1) {
+      if (this.posYinicial>canvas.height && this.color==colorj1) {
         this.posfichaini += 50;
         this.posYinicial = 80;
       }
-      else if (this.posYinicial>950 && this.color==colorj2) {
+      else if (this.posYinicial>canvas.height && this.color==colorj2) {
         this.posfichaini -= 50;
         this.posYinicial = 80;
       }
