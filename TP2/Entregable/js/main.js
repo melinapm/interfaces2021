@@ -189,7 +189,10 @@ function onMouseUp(){
       document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[0].getNombre() + "!";
     else
       document.querySelector("#nombreGanador").innerHTML = "¡Gano " + jugadores[1].getNombre() + "!";
-    $("#modalGanador").modal('show');
+
+    // Modal ganador
+    $('#modalGanador').modal({backdrop: 'static', keyboard: false})
+    $('#modalGanador').modal('show');
 
     canvas.removeEventListener('mousedown',onMouseDown,false); //ESTOS LISTENER NO SE SI VAN ACA
     canvas.removeEventListener('mouseup',onMouseUp,false);
