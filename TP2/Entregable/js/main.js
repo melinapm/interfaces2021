@@ -30,7 +30,7 @@ let timerTurno;
 
 // TimerGlobal del juego en milisegundos
 let timeOutGlobal;
-let segTimeOutGlobal = 60000;
+let segTimeOutGlobal = 6000000;
 
 // Hago que no se pueda hacer click por fuera del modal ;)
 $('#jugarModal').modal({backdrop: 'static', keyboard: false})
