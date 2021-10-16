@@ -235,6 +235,7 @@ function newGame(){
   canvas.addEventListener('mouseup',onMouseUp,false);
   canvas.addEventListener('mousemove',onMouseMoved,false);
   clearInterval(timerTurno); // Reseteo el timer por si es un nuevo juego
+  clearInterval(timeOutGlobal);
   alertaTurno(); // Inicia el timer
 }
 
