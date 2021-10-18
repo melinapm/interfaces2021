@@ -1,0 +1,35 @@
+body {
+    background-color:black;
+}
+
+#canvas1 {
+    position: absolute;
+    border: 3px solid white; 
+    width: 1000px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+/**/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 0; /* Sit on top */
+    padding-top: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+  }
+  
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
