@@ -14,14 +14,9 @@ const backgroundLayer3 = new Image();
 backgroundLayer3.src = 'images/layer-3.png';
 
 // Trooper
-const playerImage = new Image();
+let playerImage = new Image();
 playerImage.src = 'images/walk.png';
-const spriteWidth = 90;
-const spriteHeight = 115;
-let frameX = 0; // Mueve
-let frameY = 0; // Cambia sprite
-let gameFrame = 0;
-let staggerFrames = 0;
+
 
 
 $('#modalPrincipal').modal({backdrop: 'static', keyboard: false})
@@ -46,6 +41,8 @@ window.addEventListener('load', function() {
     
     const gameObject = [layer1, layer2, layer3];
     
+    const tropper = new Tropper(playerImage);
+
     // Funcion para mover el fondo
     function animateBackground() {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); // Reseteo el context asi no arrastra la imagen
@@ -54,25 +51,10 @@ window.addEventListener('load', function() {
             object.draw();
         });
         requestAnimationFrame(animateBackground);
-    };    
-
-    function animateTropper(){
-        //ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        let position = Math.floor(gameFrame/staggerFrames) % 6;
-        frameX = spriteWidth * position;
-        ctx.drawImage(playerImage, frameX, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 500, 115, 90);
-        
-        if (gameFrame % staggerFrames == 0){
-            if (frameY < 6) frameX ++;
-            else frameX = 0;
-        }
-
-        gameFrame ++;
-        requestAnimationFrame(animateTropper);
     };
 
     animateBackground();
-    animateTropper();
+    tropper.animate();
 });
 
 
