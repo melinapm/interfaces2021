@@ -172,10 +172,10 @@ body {
 /*--------------------------------------------------------------------------------*/
 @keyframes desplazarObstaculo{
     from{
-        margin-left: 200%;
+        left: 200%;
     }
     to {
-        margin-left: 0%;
+        left: -10%;
     }
   }
 @keyframes desplazarDerecha{

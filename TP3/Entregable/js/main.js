@@ -14,6 +14,7 @@ botonesVolverAJugar.forEach(function(boton) {
 });
 
 function modalsGame(){
+    $("#modalPrincipal").modal('hide');
     $("#modalPerdiste").modal('hide');
     $("#modalGanaste").modal('hide');
     startAnimations();
@@ -24,11 +25,6 @@ document.addEventListener('keydown', (event) => {
     
     var name = event.key;
     switch (name) {
-        case 'ArrowRight':
-            $("#modalPrincipal").modal('hide');
-            startAnimations();
-            startGame();
-            break;
         case 'ArrowUp':
             document.getElementById('trooper').classList.remove('caminar');
             document.getElementById('trooper').classList.add('saltar');
@@ -48,7 +44,7 @@ function startGame(){
         var trooperX = document.getElementById('trooper').getBoundingClientRect().x; // Siempre igual
         var trooperY = document.getElementById('trooper').getBoundingClientRect().y; // Siempre igual menos cuando salta que resta
         
-        if (((trooperX+35) >= piedraX) && (trooperY ==  trooperYInit)) {
+        if ((((trooperX+35) >= piedraX) && (trooperX <= piedraX+10)) && (trooperY ==  trooperYInit)) {
             cantidadVidas--;
             changeLifes();
             document.getElementById('trooper').classList.remove('caminar');
