@@ -1,22 +1,24 @@
 $('#modalPrincipal').modal({backdrop: 'static', keyboard: false})
-$("#modalPrincipal").modal('show');
+$('#modalPrincipal').modal('show');
 
 // Arrancamos a jugar!
 let cantidadVidas;
 let cantidadPiedras;
 let trooperYInit = document.getElementById('trooper').getBoundingClientRect().y;
 let validatorGame;
-let botonesVolverAJugar = document.querySelectorAll("#volverAJugar");
+let botonesVolverAJugar = document.querySelectorAll('#volverAJugar');
 let divCantObstaculos = document.getElementById('cantObstaculos');
+let fondo;
 
 botonesVolverAJugar.forEach(function(boton) {
-    boton.addEventListener("click", modalsGame);
+    boton.addEventListener('click', modalsGame);
 });
 
 function modalsGame(){
-    $("#modalPrincipal").modal('hide');
-    $("#modalPerdiste").modal('hide');
-    $("#modalGanaste").modal('hide');
+    $('#modalPrincipal').modal('hide');
+    $('#modalPerdiste').modal('hide');
+    $('#modalGanaste').modal('hide');
+    fondo = document.getElementById('fondos').value;
     startAnimations();
     startGame();
 };
@@ -33,13 +35,27 @@ document.addEventListener('keydown', (event) => {
                 document.getElementById('trooper').classList.add('caminar');
             }, 100);
             break;
+            case 'ArrowRight':
+                startAnimations();
+                startGame();
+                document.getElementById('trooper').classList.remove('caminar');
+                document.getElementById('trooper').classList.add('correr');
+                break;
+            case 'ArrowLeft':
+                startAnimations();
+                startGame();
+                document.getElementById('trooper').classList.remove('correr');
+                document.getElementById('trooper').classList.add('caminar');
+                break;
     }
 }, false);
 
 function startGame(){
+    cargarFondo();
     validatorGame = setInterval(function() {
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
+        var arturX = document.getElementById('obstaculo2').getBoundingClientRect().x; // disminuye hasta el trooper
 
         var trooperX = document.getElementById('trooper').getBoundingClientRect().x; // Siempre igual
         var trooperY = document.getElementById('trooper').getBoundingClientRect().y; // Siempre igual menos cuando salta que resta
@@ -53,7 +69,16 @@ function startGame(){
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
             }, 1000);} 
-        else if (((trooperX+35) >= piedraX) && (trooperY <  trooperYInit)) {
+        else if ((((trooperX+35) >= arturX) && (trooperX <= arturX+10)) && (trooperY ==  trooperYInit)) {
+            cantidadVidas--;
+            changeLifes();
+            document.getElementById('trooper').classList.remove('caminar');
+            document.getElementById('trooper').classList.add('morir');
+            setTimeout(function() {
+                document.getElementById('trooper').classList.remove('morir');
+                document.getElementById('trooper').classList.add('caminar');
+            }, 1000);} 
+        else if ((((trooperX+35) >= piedraX) && (trooperY <  trooperYInit)) || (((trooperX+35) >= arturX) && (trooperY <  trooperYInit))){
             cantidadPiedras --;
             divCantObstaculos.innerHTML = cantidadPiedras;
         }
@@ -71,7 +96,7 @@ function startGame(){
 
 function endGame(){
     $('#modalPerdiste').modal({backdrop: 'static', keyboard: false})
-    $("#modalPerdiste").modal('show');
+    $('#modalPerdiste').modal('show');
     clearInterval(validatorGame);
     stopAnimations();
 }
@@ -95,7 +120,7 @@ function changeLifes(){
 }
 
 function stopAnimations(){
-    var animations = document.getElementsByClassName("layer");
+    var animations = document.getElementsByClassName('layer');
     for (var i = 0; i < animations.length; i++) {
         animations.item(i).classList.add('remove-animation');;
     }
@@ -106,7 +131,7 @@ function startAnimations(){
     cantidadPiedras = 10;
     divCantObstaculos.innerHTML = cantidadPiedras;
     changeLifes();
-    var animations = document.getElementsByClassName("layer");
+    var animations = document.getElementsByClassName('layer');
     for (var i = 0; i < animations.length; i++) {
         animations.item(i).classList.remove('remove-animation');;
     }
@@ -115,7 +140,25 @@ function startAnimations(){
 
 function winGame(){
     $('#modalGanaste').modal({backdrop: 'static', keyboard: false})
-    $("#modalGanaste").modal('show');
+    $('#modalGanaste').modal('show');
     clearInterval(validatorGame);
     stopAnimations();
+}
+
+
+function cargarFondo(){
+    if (fondo == 'Desierto') {
+        document.getElementById('fondo').style.background = 'url(images/layer-1b.png)';
+        document.getElementById('naves').style.background = 'url(images/layer-2b.png)';
+        document.getElementById('piso').style.background = 'url(images/layer-3b.png)';
+        document.getElementById('obstaculo').style.background = 'url(images/roca2.png) no-repeat';
+        document.getElementById('obstaculo').style.backgroundSize = "100px";
+        document.getElementById('obstaculo').style.top = "560px";
+    } else {
+        document.getElementById('fondo').style.background = 'url(images/layer-1.png)';
+        document.getElementById('naves').style.background = 'url(images/layer-2.png)';
+        document.getElementById('piso').style.background = 'url(images/layer-3.png)';
+        document.getElementById('obstaculo').style.background = 'url(images/roca.png) no-repeat';
+        document.getElementById('obstaculo').style.backgroundSize = "100px";
+    } 
 }

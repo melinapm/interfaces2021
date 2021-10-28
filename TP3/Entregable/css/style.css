@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Starwars';
+    src: local('icomoonregular'),
+         url('Starjout.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-strecht: condensed;
+    unicode-range: "U+0-10FFFF";
+  }
 
 /* Generales */
 html, body {
@@ -13,13 +22,12 @@ body {
 }
 /* ---------------------------------------------------- */
 
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 0; /* Sit on top */
-    padding-top: 200px; /* Location of the box */
+    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -31,8 +39,22 @@ body {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 800px;
   }
+
+  .modal-text {
+    text-align: center;
+    font-size: 1.2em;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+  }
+
+#volverAJugar {
+    font-family: "Starwars";
+    font-size: 2em;
+    background-color: rgba(0,0,0,0.8);
+    color: rgba(251, 235, 0);
+}
 
 
 /* Div contenedor de juego*/
@@ -95,15 +117,24 @@ body {
 }
 
 .game .obstaculo{
-    top: 530px;
+    top: 540px;
     background:url('../images/roca.png') no-repeat;
-    background-size: 120px;
+    background-size: 100px;
     animation-name: desplazarObstaculo;
     animation-duration: 6s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
 }
 
+.game .obstaculo2 {
+    top: 540px;
+    background:url('../images/obstaculo.png') no-repeat;
+    background-size: 50px;
+    animation-name: desplazarObstaculo;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
 /*------------------------------------------------------------------------ */
 
 /* Distintas clases por cada accion */
@@ -129,14 +160,14 @@ body {
     animation-iteration-count:infinite;
 }
 
-.game .correr{
+.game .correr {
     height: 115px;
-    width: 107px;
-    top:500px;
+    width: 68px;
+    top: 500px;
     background: url('../images/run.png') left center;
     animation-name: desplazarDerecha;
-    animation-duration: 2s;
-    animation-timing-function: steps(8);
+    animation-duration: 1s;
+    animation-timing-function: steps(7);
     animation-iteration-count:infinite;
 }
 
@@ -162,10 +193,11 @@ body {
 .game .cantObstaculos {
     top: 1%;
     left: 1%;
-    color: white;
-    font-size: 3em;
+    color:rgba(255,255,255,0.9);
+    font-size: 2.5em;
     background:url('../images/roca.png') no-repeat;
     background-size: 80px;
+    font-family: "Starwars";
 }
 
 
