@@ -35,18 +35,14 @@ document.addEventListener('keydown', (event) => {
                 document.getElementById('trooper').classList.add('caminar');
             }, 100);
             break;
-            case 'ArrowRight':
-                startAnimations();
-                startGame();
-                document.getElementById('trooper').classList.remove('caminar');
-                document.getElementById('trooper').classList.add('correr');
-                break;
-            case 'ArrowLeft':
-                startAnimations();
-                startGame();
-                document.getElementById('trooper').classList.remove('correr');
-                document.getElementById('trooper').classList.add('caminar');
-                break;
+        case 'ArrowRight':
+            document.getElementById('trooper').classList.remove('caminar');
+            document.getElementById('trooper').classList.add('correr');
+            break;
+        case 'ArrowLeft':
+            document.getElementById('trooper').classList.remove('correr');
+            document.getElementById('trooper').classList.add('caminar');
+            break;
     }
 }, false);
 
