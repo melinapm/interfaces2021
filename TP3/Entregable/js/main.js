@@ -9,6 +9,7 @@ let validatorGame;
 let botonesVolverAJugar = document.querySelectorAll('#volverAJugar');
 let divCantObstaculos = document.getElementById('cantObstaculos');
 let fondo;
+let musica = document.getElementById("musica");
 
 botonesVolverAJugar.forEach(function(boton) {
     boton.addEventListener('click', modalsGame);
@@ -19,6 +20,7 @@ function modalsGame(){
     $('#modalPerdiste').modal('hide');
     $('#modalGanaste').modal('hide');
     fondo = document.getElementById('fondos').value;
+    musica.pause();
     startAnimations();
     startGame();
 };
@@ -85,9 +87,21 @@ function startGame(){
         
         var diferencia = Math.abs(eval(trooperX-corazonX)); // Agarro corazon
         if (diferencia <= 15) {
-            if (cantidadVidas < 3)
+            if (cantidadVidas < 3) {
                 cantidadVidas ++;
                 changeLifes();
+                document.getElementById('vida').style.backgroundSize = "150px";
+                document.getElementById('vida').style.top = "430px";
+                document.getElementById('vida').style.left = "80px";
+                document.getElementById('vida').classList.add('remove-animation');
+                setTimeout(function() {
+                    document.getElementById('vida').style.backgroundSize = "75px";
+                    document.getElementById('vida').style.top = "530px";
+                    document.getElementById('vida').classList.remove('remove-animation');
+                    
+                }, 500);
+                    
+            }
         }
 
         if (cantidadVidas == 0) {
@@ -106,7 +120,6 @@ function endGame(){
     clearInterval(validatorGame);
     stopAnimations();
 }
-
 function changeLifes(){
     let vidas = document.getElementById('vidas');
     switch (cantidadVidas) {
@@ -128,7 +141,7 @@ function changeLifes(){
 function stopAnimations(){
     var animations = document.getElementsByClassName('layer');
     for (var i = 0; i < animations.length; i++) {
-        animations.item(i).classList.add('remove-animation');;
+        animations.item(i).classList.add('remove-animation');
     }
 }
 

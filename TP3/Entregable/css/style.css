@@ -20,6 +20,11 @@ body {
     background: url('../images/saltofondo.jpg');
     background-size: cover;
 }
+
+audio { 
+    display:none;
+}
+
 /* ---------------------------------------------------- */
 
 /* The Modal (background) */

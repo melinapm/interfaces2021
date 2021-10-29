@@ -20,6 +20,9 @@
         <div id="cantObstaculos" class="layer cantObstaculos"> </div>
     </div>
 
+    
+    <audio autoplay="true" loop="true" id="musica" src="css/starwars.mp3"></audio>
+
     <!-- The Modal -->
     <div id="modalPrincipal" class="modal">
       <span class="close">&times;</span>
@@ -32,17 +35,13 @@
       <p class="modal-content modal-text"> <br> </br> Modo de juego: Cuentas con 3 vidas para saltar 10 obstaculos (piedras o Arturitos). </p>
       <p class="modal-content modal-text"> Puedes recuperar vidas capturando los corazones. </p>
       <p class="modal-content modal-text"> Elegir entre dos escenarios para jugar: espacio o desierto. </p>
-      <p class="modal-content modal-text"> <br> </br> Keyframes del punto 2 en:   </p>
+      <p class="modal-content modal-text"> <br> </br> Keyframes del punto 2 en el trooper para caminar, saltar, correr y morir.   </p>
     </div>
 
     <!-- The Modal Losed -->
     <div id="modalPerdiste" class="modal">
       <span class="close">&times;</span>
       <img class="modal-content" src="images/perdiste.png">
-      <select id="fondo" class="modal-content modal-text">
-        <option> Espacio </option>
-        <option> Desierto </option>
-      </select>
       <button id="volverAJugar" class="modal-content"> Volver a Jugar </button>
     </div>
 
@@ -50,10 +49,6 @@
     <div id="modalGanaste" class="modal">
       <span class="close">&times;</span>
       <img class="modal-content" src="images/ganaste.png">
-      <select id="fondo" class="modal-content modal-text">
-        <option> Espacio </option>
-        <option> Desierto </option>
-      </select>
       <button id="volverAJugar" class="modal-content"> Volver a Jugar </button>
     </div>
 
