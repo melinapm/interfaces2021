@@ -16,11 +16,12 @@ botonesVolverAJugar.forEach(function(boton) {
 });
 
 function modalsGame(){
+    musica.currentTime = 0;
+    musica.play();
     $('#modalPrincipal').modal('hide');
     $('#modalPerdiste').modal('hide');
     $('#modalGanaste').modal('hide');
     fondo = document.getElementById('fondos').value;
-    musica.pause();
     startAnimations();
     startGame();
 };
@@ -50,6 +51,7 @@ document.addEventListener('keydown', (event) => {
 
 function startGame(){
     cargarFondo();
+    musica.pause();
     validatorGame = setInterval(function() {
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
