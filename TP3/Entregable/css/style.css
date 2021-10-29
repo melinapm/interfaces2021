@@ -138,13 +138,14 @@ body {
 
 .game .vida{
     top: 530px;
-    background:url('../images/corazon.png') no-repeat;
-    background-size: 50px;
+    background:url('../images/corazon.gif') no-repeat;
+    background-size: 75px;
     animation-name: desplazarVida;
     animation-duration: 10s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
 }
+
 /*------------------------------------------------------------------------ */
 
 /* Distintas clases por cada accion */
@@ -173,13 +174,13 @@ body {
 
 .game .correr {
     height: 115px;
-    width: 68px;
+    width: 100px;
     top: 500px;
     left: 100px;
     background: url('../images/run.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
-    animation-timing-function: steps(7);
+    animation-timing-function: steps(5);
     animation-iteration-count:infinite;
 }
 
@@ -295,7 +296,6 @@ body {
     }
 }
 
-/* Ver si esta bien, es para frenar las animaciones*/
 .remove-animation {
     animation: none !important;
   }
