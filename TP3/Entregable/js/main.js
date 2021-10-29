@@ -54,9 +54,10 @@ function startGame(){
         var arturX = document.getElementById('obstaculo2').getBoundingClientRect().x; // disminuye hasta el trooper
 
         var trooperX = document.getElementById('trooper').getBoundingClientRect().x; // Siempre igual
+        console.log("Posicion del trooper: "+trooperX);
         var trooperY = document.getElementById('trooper').getBoundingClientRect().y; // Siempre igual menos cuando salta que resta
         
-        if ((((trooperX+35) >= piedraX) && (trooperX <= piedraX+10)) && (trooperY ==  trooperYInit)) {
+        if ((((trooperX+35) >= piedraX) && (trooperX+5 < piedraX)) && (trooperY ==  trooperYInit)) {
             cantidadVidas--;
             changeLifes();
             document.getElementById('trooper').classList.remove('caminar');
@@ -65,7 +66,7 @@ function startGame(){
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
             }, 500);} 
-        else if ((((trooperX+35) >= arturX) && (trooperX <= arturX+10)) && (trooperY ==  trooperYInit)) {
+        else if ((((trooperX+35) >= arturX) && (trooperX+15 < arturX)) && (trooperY ==  trooperYInit)) {
             cantidadVidas--;
             changeLifes();
             document.getElementById('trooper').classList.remove('caminar');
@@ -73,8 +74,8 @@ function startGame(){
             setTimeout(function() {
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
-            }, 1000);} 
-        else if ((((trooperX+35) >= piedraX) && (trooperY <  trooperYInit)) || (((trooperX+35) >= arturX) && (trooperY <  trooperYInit))){
+            }, 500);} 
+        else if (((((trooperX+35) >= piedraX) && (trooperX+5<piedraX)) && (trooperY <  trooperYInit)) || ((((trooperX+35) >= arturX) && (trooperX+15<arturX)) && (trooperY <  trooperYInit))){
             cantidadPiedras --;
             divCantObstaculos.innerHTML = cantidadPiedras;
         }

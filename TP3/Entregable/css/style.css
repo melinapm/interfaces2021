@@ -135,6 +135,16 @@ body {
     animation-timing-function: linear;
     animation-iteration-count:infinite;
 }
+
+.game .vida{
+    top: 530px;
+    background:url('../images/corazon.png') no-repeat;
+    background-size: 50px;
+    animation-name: desplazarVida;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
 /*------------------------------------------------------------------------ */
 
 /* Distintas clases por cada accion */
@@ -142,6 +152,7 @@ body {
     height: 115px;
     width: 92px;
     top:500px;
+    left: 100px;
     background: url('../images/walk.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
@@ -153,6 +164,7 @@ body {
     height: 115px;
     width: 92px;
     top:500px;
+    left: 100px;
     background: url('../images/walk.png') left center;
     animation-name: saltar;
     animation-duration: 0.5s;
@@ -163,6 +175,7 @@ body {
     height: 115px;
     width: 68px;
     top: 500px;
+    left: 100px;
     background: url('../images/run.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
@@ -174,6 +187,7 @@ body {
     height: 115px;
     width: 118px;
     top: 500px;
+    left: 100px;
     background: url('../images/die.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
@@ -209,9 +223,47 @@ body {
         transform: translateY(-50px);
     }
     100%{
-        transform: translateY(1px);
+        transform: translateY(0px);
     }
   }
+@keyframes desplazarVida{
+    0%{
+        transform: translateY(0px);
+        left: 400%;
+    }
+    10%{
+        transform: translateY(-50px); 
+    }
+    20%{
+        transform: translateY(0px); 
+    }
+    30% {
+        transform: translateY(-50px);
+    }
+    40%{
+        transform: translateY(0px); 
+    }
+    50%{
+        transform: translateY(-50px); 
+    }
+    60% {
+        transform: translateY(0px);
+    }
+    70% {
+        transform: translateY(-50px);
+    }
+    80%{
+        transform: translateY(0px); 
+    }
+    90%{
+        transform: translateY(-50px); 
+    }
+    100%{
+        left: -10%;
+        transform: translateY(0px);
+    }
+  }
+
 @keyframes desplazarObstaculo{
     from{
         left: 200%;
