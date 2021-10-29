@@ -152,12 +152,11 @@ body {
 .game .saltar{
     height: 115px;
     width: 92px;
-    top:430px;
+    top:500px;
     background: url('../images/walk.png') left center;
-    animation-name: desplazarDerecha;
-    animation-duration: 1s;
-    animation-timing-function: steps(1);
-    animation-iteration-count:infinite;
+    animation-name: saltar;
+    animation-duration: 0.5s;
+    
 }
 
 .game .correr {
@@ -202,6 +201,17 @@ body {
 
 
 /*--------------------------------------------------------------------------------*/
+@keyframes saltar{
+    0%{
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-50px);
+    }
+    100%{
+        transform: translateY(1px);
+    }
+  }
 @keyframes desplazarObstaculo{
     from{
         left: 200%;

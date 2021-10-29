@@ -33,7 +33,7 @@ document.addEventListener('keydown', (event) => {
             setTimeout(function() {
                 document.getElementById('trooper').classList.remove('saltar');
                 document.getElementById('trooper').classList.add('caminar');
-            }, 100);
+            }, 500);
             break;
         case 'ArrowRight':
             document.getElementById('trooper').classList.remove('caminar');
@@ -64,7 +64,7 @@ function startGame(){
             setTimeout(function() {
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
-            }, 1000);} 
+            }, 500);} 
         else if ((((trooperX+35) >= arturX) && (trooperX <= arturX+10)) && (trooperY ==  trooperYInit)) {
             cantidadVidas--;
             changeLifes();
