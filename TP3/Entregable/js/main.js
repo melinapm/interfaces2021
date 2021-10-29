@@ -52,12 +52,12 @@ function startGame(){
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
         var arturX = document.getElementById('obstaculo2').getBoundingClientRect().x; // disminuye hasta el trooper
+        var corazonX = document.getElementById('vida').getBoundingClientRect().x; // disminuye hasta el trooper
 
         var trooperX = document.getElementById('trooper').getBoundingClientRect().x; // Siempre igual
-        console.log("Posicion del trooper: "+trooperX);
         var trooperY = document.getElementById('trooper').getBoundingClientRect().y; // Siempre igual menos cuando salta que resta
         
-        if ((((trooperX+35) >= piedraX) && (trooperX+5 < piedraX)) && (trooperY ==  trooperYInit)) {
+        if ((((trooperX+35) >= piedraX) && (trooperX+5 < piedraX)) && (trooperY ==  trooperYInit)) { // No salto la piedra
             cantidadVidas--;
             changeLifes();
             document.getElementById('trooper').classList.remove('caminar');
@@ -65,8 +65,9 @@ function startGame(){
             setTimeout(function() {
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
-            }, 500);} 
-        else if ((((trooperX+35) >= arturX) && (trooperX+15 < arturX)) && (trooperY ==  trooperYInit)) {
+            }, 500);
+        } 
+        else if ((((trooperX+35) >= arturX) && (trooperX+15 < arturX)) && (trooperY ==  trooperYInit)) { // No salto a arturo
             cantidadVidas--;
             changeLifes();
             document.getElementById('trooper').classList.remove('caminar');
@@ -74,12 +75,20 @@ function startGame(){
             setTimeout(function() {
                 document.getElementById('trooper').classList.remove('morir');
                 document.getElementById('trooper').classList.add('caminar');
-            }, 500);} 
-        else if (((((trooperX+35) >= piedraX) && (trooperX+5<piedraX)) && (trooperY <  trooperYInit)) || ((((trooperX+35) >= arturX) && (trooperX+15<arturX)) && (trooperY <  trooperYInit))){
+            }, 500);
+        } 
+        else if (((((trooperX+35) >= piedraX) && (trooperX+5<piedraX)) && (trooperY <  trooperYInit)) 
+                    || ((((trooperX+35) >= arturX) && (trooperX+15<arturX)) && (trooperY <  trooperYInit))){ // Salto algun obstaculo
             cantidadPiedras --;
             divCantObstaculos.innerHTML = cantidadPiedras;
         }
         
+        var diferencia = Math.abs(eval(trooperX-corazonX)); // Agarro corazon
+        if (diferencia <= 15) {
+            if (cantidadVidas < 3)
+                cantidadVidas ++;
+                changeLifes();
+        }
 
         if (cantidadVidas == 0) {
             endGame();
