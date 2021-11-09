@@ -31,18 +31,32 @@ document.addEventListener('keydown', (event) => {
     var name = event.key;
     switch (name) {
         case 'ArrowUp':
-            document.getElementById('trooper').classList.remove('caminar');
-            document.getElementById('trooper').classList.add('saltar');
-            setTimeout(function() {
-                document.getElementById('trooper').classList.remove('saltar');
-                document.getElementById('trooper').classList.add('caminar');
-            }, 500);
+            if (document.getElementById('trooper').classList.contains('caminar')){
+                document.getElementById('trooper').classList.remove('caminar');
+                document.getElementById('trooper').classList.add('saltar');
+                setTimeout(function() {
+                    document.getElementById('trooper').classList.remove('saltar');
+                    document.getElementById('trooper').classList.add('caminar');
+                }, 500);
+            }
+            else{
+                document.getElementById('trooper').classList.remove('correr');
+                document.getElementById('trooper').classList.add('saltar');
+                setTimeout(function() {
+                    document.getElementById('trooper').classList.remove('saltar');
+                    document.getElementById('trooper').classList.add('correr');
+                }, 500);
+            }
+            
             break;
         case 'ArrowRight':
             document.getElementById('trooper').classList.remove('caminar');
             document.getElementById('trooper').classList.add('correr');
             break;
         case 'ArrowLeft':
+            document.getElementById('piso').style.animationDuration = "6s";
+            document.getElementById('obstaculo').style.animationDuration = "6s";
+            document.getElementById('obstaculo2').style.animationDuration = "10s";
             document.getElementById('trooper').classList.remove('correr');
             document.getElementById('trooper').classList.add('caminar');
             break;
@@ -51,7 +65,6 @@ document.addEventListener('keydown', (event) => {
 
 function startGame(){
     cargarFondo();
-    musica.pause();
     validatorGame = setInterval(function() {
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
@@ -170,7 +183,12 @@ function winGame(){
 function cargarFondo(){
     if (fondo == 'Desierto') {
         document.getElementById('fondo').style.background = 'url(images/layer-1b.png)';
+        document.getElementById('explosion').style.background = 'url(images/explosion2.png) no-repeat';
+        document.getElementById('explosion').style.top = '350px';
+        document.getElementById('explosion').style.animationDirection = 'reverse';
+        document.getElementById('explosion').style.animationDuration = "4s";
         document.getElementById('naves').style.background = 'url(images/layer-2b.png)';
+        document.getElementById('naves').style.animationDuration = "4s";
         document.getElementById('piso').style.background = 'url(images/layer-3b.png)';
         document.getElementById('obstaculo').style.background = 'url(images/roca2.png) no-repeat';
         document.getElementById('obstaculo').style.backgroundSize = "100px";
