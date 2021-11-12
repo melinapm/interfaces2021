@@ -255,7 +255,7 @@ audio {
     background: url('../images/die.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
-    animation-timing-function: steps(7);
+    animation-timing-function: steps(11);
     animation-iteration-count: infinite;
 }
 

@@ -63,7 +63,7 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 function startGame(){
-    // cargarFondo();
+    cargarFondo();
     validatorGame = setInterval(function() {
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
@@ -178,28 +178,31 @@ function winGame(){
     stopAnimations();
 }
 
-/*
 function cargarFondo(){
-    if (fondo == 'Desierto') {
-        document.getElementById('fondo').style.background = 'url(images/layer-1b.png)';
-        document.getElementById('explosion').style.background = 'url(images/explosion2.png) no-repeat';
-        document.getElementById('explosion').style.top = '350px';
-        document.getElementById('explosion').style.animationDirection = 'reverse';
-        document.getElementById('explosion').style.animationDuration = "4s";
-        document.getElementById('naves').style.background = 'url(images/layer-2b.png)';
-        document.getElementById('naves').style.animationDuration = "4s";
-        document.getElementById('piso').style.background = 'url(images/layer-3b.png)';
-        document.getElementById('obstaculo').style.background = 'url(images/roca2.png) no-repeat';
-        document.getElementById('obstaculo').style.backgroundSize = "100px";
-        document.getElementById('obstaculo').style.top = "560px";
+    if (fondo == 'Dia') {
+        document.getElementById('fondo0').style.background = 'url(images/layer-0b.png)';
+        document.getElementById('fondo1').style.background = 'url(images/layer-1b.png)';
+        document.getElementById('fondo2').style.background = 'url(images/layer-2b.png)';
+        document.getElementById('fondo3').style.background = 'url(images/layer-3b.png)';
+        document.getElementById('fondo4').style.background = 'url(images/layer-4b.png)';
+        document.getElementById('fondo5').style.background = 'url(images/layer-5b.png)';
+        document.getElementById('fondo6').style.background = 'url(images/layer-6b.png)';
+        document.getElementById('fondo7').style.background = 'url(images/layer-7b.png)';
+        document.getElementById('fondo8').style.background = 'url(images/layer-8b.png)';
+        document.getElementById('fondo9').style.background = 'url(images/layer-9b.png)';
     } else {
-        document.getElementById('fondo').style.background = 'url(images/layer-1.png)';
-        document.getElementById('naves').style.background = 'url(images/layer-2.png)';
-        document.getElementById('piso').style.background = 'url(images/layer-3.png)';
-        document.getElementById('obstaculo').style.background = 'url(images/roca.png) no-repeat';
-        document.getElementById('obstaculo').style.backgroundSize = "100px";
+        document.getElementById('fondo0').style.background = 'url(images/layer-0.png)';
+        document.getElementById('fondo1').style.background = 'url(images/layer-1.png)';
+        document.getElementById('fondo2').style.background = 'url(images/layer-2.png)';
+        document.getElementById('fondo3').style.background = 'url(images/layer-3.png)';
+        document.getElementById('fondo4').style.background = 'url(images/layer-4.png)';
+        document.getElementById('fondo5').style.background = 'url(images/layer-5.png)';
+        document.getElementById('fondo6').style.background = 'url(images/layer-6.png)';
+        document.getElementById('fondo7').style.background = 'url(images/layer-7.png)';
+        document.getElementById('fondo8').style.background = 'url(images/layer-8.png)';
+        document.getElementById('fondo9').style.background = 'url(images/layer-9.png)';
     }
-}*/
+}
 
 function velocidadFondo(incremento){
     if (incremento){
