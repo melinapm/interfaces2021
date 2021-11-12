@@ -16,8 +16,8 @@ botonesVolverAJugar.forEach(function(boton) {
 });
 
 function modalsGame(){
-    musica.currentTime = 0;
-    musica.play();
+    // musica.currentTime = 0;
+    // musica.play();
     $('#modalPrincipal').modal('hide');
     $('#modalPerdiste').modal('hide');
     $('#modalGanaste').modal('hide');
@@ -50,13 +50,12 @@ document.addEventListener('keydown', (event) => {
             
             break;
         case 'ArrowRight':
+            velocidadFondo(true);
             document.getElementById('trooper').classList.remove('caminar');
             document.getElementById('trooper').classList.add('correr');
             break;
         case 'ArrowLeft':
-            document.getElementById('piso').style.animationDuration = "6s";
-            document.getElementById('obstaculo').style.animationDuration = "6s";
-            document.getElementById('obstaculo2').style.animationDuration = "10s";
+            velocidadFondo(false);
             document.getElementById('trooper').classList.remove('correr');
             document.getElementById('trooper').classList.add('caminar');
             break;
@@ -64,7 +63,7 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 function startGame(){
-    cargarFondo();
+    // cargarFondo();
     validatorGame = setInterval(function() {
     
         var piedraX = document.getElementById('obstaculo').getBoundingClientRect().x; // disminuye hasta el trooper
@@ -179,7 +178,7 @@ function winGame(){
     stopAnimations();
 }
 
-
+/*
 function cargarFondo(){
     if (fondo == 'Desierto') {
         document.getElementById('fondo').style.background = 'url(images/layer-1b.png)';
@@ -199,5 +198,31 @@ function cargarFondo(){
         document.getElementById('piso').style.background = 'url(images/layer-3.png)';
         document.getElementById('obstaculo').style.background = 'url(images/roca.png) no-repeat';
         document.getElementById('obstaculo').style.backgroundSize = "100px";
-    } 
+    }
+}*/
+
+function velocidadFondo(incremento){
+    if (incremento){
+        document.getElementById('obstaculo').style.animationDuration = "3s";
+        document.getElementById('obstaculo2').style.animationDuration = "5s";
+        document.getElementsByClassName('fondo9')[0].style.animationDuration = "1s";
+        document.getElementsByClassName('fondo8')[0].style.animationDuration = "3s";
+        document.getElementsByClassName('fondo7')[0].style.animationDuration = "5s";
+        document.getElementsByClassName('fondo6')[0].style.animationDuration = "12s";
+        document.getElementsByClassName('fondo5')[0].style.animationDuration = "20s";
+        document.getElementsByClassName('fondo4')[0].style.animationDuration = "25s";
+        document.getElementsByClassName('fondo3')[0].style.animationDuration = "30s";
+        document.getElementsByClassName('fondo2')[0].style.animationDuration = "40s";        
+    } else {
+        document.getElementById('obstaculo').style.animationDuration = "6s";
+        document.getElementById('obstaculo2').style.animationDuration = "10s";
+        document.getElementsByClassName('fondo9')[0].style.animationDuration = "10s";
+        document.getElementsByClassName('fondo8')[0].style.animationDuration = "13s";
+        document.getElementsByClassName('fondo7')[0].style.animationDuration = "15s";
+        document.getElementsByClassName('fondo6')[0].style.animationDuration = "22s";
+        document.getElementsByClassName('fondo5')[0].style.animationDuration = "30s";
+        document.getElementsByClassName('fondo4')[0].style.animationDuration = "35s";
+        document.getElementsByClassName('fondo3')[0].style.animationDuration = "40s";
+        document.getElementsByClassName('fondo2')[0].style.animationDuration = "50s";
+    }
 }

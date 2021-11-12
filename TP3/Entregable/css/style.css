@@ -89,37 +89,95 @@ audio {
     background-size: cover;
 }
 
+.game .fondo0{
+    background:url('../images/layer-0.png');
+    animation-name: animationBack;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
 .game .fondo{
     background:url('../images/layer-1.png');
-    animation-name: desplazarDerecha;
-    animation-duration: 20s;
+    animation-name: animationBack;
+    animation-duration:55s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
-}
-.game .explosion{
-    background:url('../images/explosion.png') no-repeat;
-    animation-name: animationexplosion;
-    animation-duration: 5s;
-    animation-timing-function: linear;
-    animation-iteration-count:infinite;
-    
 }
 
-.game .naves{
+.game .fondo2{
     background:url('../images/layer-2.png');
-    animation-name: desplazarDerecha;
-    animation-duration: 8s;
+    animation-name: animationBack;
+    animation-duration: 50s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
 }
 
-.game .piso{
+.game .fondo3{
+    background:url('../images/layer-3.png');
+    animation-name: animationBack;
+    animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo4{
+    background:url('../images/layer-4.png');
+    animation-name: animationBack;
+    animation-duration: 35s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo5{
+    background:url('../images/layer-5.png');
+    animation-name: animationBack;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo6{
+    background:url('../images/layer-6.png');
+    animation-name: animationBack;
+    animation-duration: 22s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo7{
+    background:url('../images/layer-7.png');
+    animation-name: animationBack;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo8{
+    background:url('../images/layer-8.png');
+    animation-name: animationBack;
+    animation-duration: 13s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+.game .fondo9{
+    background:url('../images/layer-9.png');
+    animation-name: animationBack;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+}
+
+
+/* ----------------------------------------------------------- */
+
+/* .game .piso{
     background:url('../images/layer-3.png');
     animation-name: desplazarDerecha;
     animation-duration: 6s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
-}
+} */
 
 .game .obstaculo{
     top: 540px;
@@ -156,12 +214,12 @@ audio {
 /* Distintas clases por cada accion */
 .game .caminar{
     height: 115px;
-    width: 92px;
+    width: 110px;
     top:500px;
     left: 100px;
     background: url('../images/walk.png') left center;
     animation-name: desplazarDerecha;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
     animation-timing-function: steps(8);
     animation-iteration-count:infinite;
 }
@@ -178,14 +236,14 @@ audio {
 }
 
 .game .correr {
-    height: 115px;
+    height: 112px;
     width: 100px;
     top: 500px;
     left: 100px;
     background: url('../images/run.png') left center;
     animation-name: desplazarDerecha;
     animation-duration: 1s;
-    animation-timing-function: steps(5);
+    animation-timing-function: steps(7);
     animation-iteration-count:infinite;
 }
 
@@ -226,7 +284,7 @@ audio {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-50px);
+        transform: translateY(-80px);
     }
     100%{
         transform: translateY(0px);
@@ -289,6 +347,16 @@ audio {
     }
   }
 
+@keyframes desplazarAbajo{
+    from{
+        background-position-y: 0%;
+    }
+    to {
+        background-position-y: 100%;
+    }
+}
+
+
 @keyframes animationexplosion {
     0%{
         background-position-x: 0%;
@@ -306,3 +374,12 @@ audio {
 .remove-animation {
     animation: none !important;
   }
+
+@keyframes animationBack {
+    0% {
+        background-position-x: 0px
+    }
+    100% {
+        background-position-x: -2400px
+    }
+}
