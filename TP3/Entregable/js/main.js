@@ -186,10 +186,10 @@ function cargarFondo(){
         document.getElementById('fondo3').style.background = 'url(images/layer-3b.png)';
         document.getElementById('fondo4').style.background = 'url(images/layer-4b.png)';
         document.getElementById('fondo5').style.background = 'url(images/layer-5b.png)';
-        document.getElementById('fondo6').style.background = '';
+        document.getElementById('fondo6').style.background = 'url(images/layer-6b.png)';
         document.getElementById('fondo7').style.background = 'url(images/layer-7b.png)';
-        document.getElementById('fondo8').style.background = '';
-        document.getElementById('fondo9').style.background = '';
+        document.getElementById('fondo8').style.background = 'url(images/layer-8b.png)';
+        document.getElementById('fondo9').style.background = 'url(images/layer-9b.png)';
     } else {
         document.getElementById('fondo0').style.background = 'url(images/layer-0.png)';
         document.getElementById('fondo1').style.background = 'url(images/layer-1.png)';
