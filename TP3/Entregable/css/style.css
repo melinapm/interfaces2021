@@ -169,15 +169,16 @@ audio {
 }
 
 
+
 /* ----------------------------------------------------------- */
 
-/* .game .piso{
-    background:url('../images/layer-3.png');
+.game .piso{
+    background:url('../images/piso.png');
     animation-name: desplazarDerecha;
     animation-duration: 6s;
     animation-timing-function: linear;
     animation-iteration-count:infinite;
-} */
+}
 
 .game .obstaculo{
     top: 540px;

@@ -50,12 +50,12 @@ document.addEventListener('keydown', (event) => {
             
             break;
         case 'ArrowRight':
-            velocidadFondo(true);
+            // velocidadFondo(true);
             document.getElementById('trooper').classList.remove('caminar');
             document.getElementById('trooper').classList.add('correr');
             break;
         case 'ArrowLeft':
-            velocidadFondo(false);
+            // velocidadFondo(false);
             document.getElementById('trooper').classList.remove('correr');
             document.getElementById('trooper').classList.add('caminar');
             break;
@@ -186,10 +186,10 @@ function cargarFondo(){
         document.getElementById('fondo3').style.background = 'url(images/layer-3b.png)';
         document.getElementById('fondo4').style.background = 'url(images/layer-4b.png)';
         document.getElementById('fondo5').style.background = 'url(images/layer-5b.png)';
-        document.getElementById('fondo6').style.background = 'url(images/layer-6b.png)';
+        document.getElementById('fondo6').style.background = '';
         document.getElementById('fondo7').style.background = 'url(images/layer-7b.png)';
-        document.getElementById('fondo8').style.background = 'url(images/layer-8b.png)';
-        document.getElementById('fondo9').style.background = 'url(images/layer-9b.png)';
+        document.getElementById('fondo8').style.background = '';
+        document.getElementById('fondo9').style.background = '';
     } else {
         document.getElementById('fondo0').style.background = 'url(images/layer-0.png)';
         document.getElementById('fondo1').style.background = 'url(images/layer-1.png)';
@@ -204,28 +204,28 @@ function cargarFondo(){
     }
 }
 
-function velocidadFondo(incremento){
-    if (incremento){
-        document.getElementById('obstaculo').style.animationDuration = "3s";
-        document.getElementById('obstaculo2').style.animationDuration = "5s";
-        document.getElementsByClassName('fondo9')[0].style.animationDuration = "1s";
-        document.getElementsByClassName('fondo8')[0].style.animationDuration = "3s";
-        document.getElementsByClassName('fondo7')[0].style.animationDuration = "5s";
-        document.getElementsByClassName('fondo6')[0].style.animationDuration = "12s";
-        document.getElementsByClassName('fondo5')[0].style.animationDuration = "20s";
-        document.getElementsByClassName('fondo4')[0].style.animationDuration = "25s";
-        document.getElementsByClassName('fondo3')[0].style.animationDuration = "30s";
-        document.getElementsByClassName('fondo2')[0].style.animationDuration = "40s";        
-    } else {
-        document.getElementById('obstaculo').style.animationDuration = "6s";
-        document.getElementById('obstaculo2').style.animationDuration = "10s";
-        document.getElementsByClassName('fondo9')[0].style.animationDuration = "10s";
-        document.getElementsByClassName('fondo8')[0].style.animationDuration = "13s";
-        document.getElementsByClassName('fondo7')[0].style.animationDuration = "15s";
-        document.getElementsByClassName('fondo6')[0].style.animationDuration = "22s";
-        document.getElementsByClassName('fondo5')[0].style.animationDuration = "30s";
-        document.getElementsByClassName('fondo4')[0].style.animationDuration = "35s";
-        document.getElementsByClassName('fondo3')[0].style.animationDuration = "40s";
-        document.getElementsByClassName('fondo2')[0].style.animationDuration = "50s";
-    }
-}
+// function velocidadFondo(incremento){
+//     if (incremento){
+//         document.getElementById('obstaculo').style.animationDuration = "3s";
+//         document.getElementById('obstaculo2').style.animationDuration = "5s";
+//         document.getElementsByClassName('fondo9')[0].style.animationDuration = "1s";
+//         document.getElementsByClassName('fondo8')[0].style.animationDuration = "3s";
+//         document.getElementsByClassName('fondo7')[0].style.animationDuration = "5s";
+//         document.getElementsByClassName('fondo6')[0].style.animationDuration = "12s";
+//         document.getElementsByClassName('fondo5')[0].style.animationDuration = "20s";
+//         document.getElementsByClassName('fondo4')[0].style.animationDuration = "25s";
+//         document.getElementsByClassName('fondo3')[0].style.animationDuration = "30s";
+//         document.getElementsByClassName('fondo2')[0].style.animationDuration = "40s";        
+//     } else {
+//         document.getElementById('obstaculo').style.animationDuration = "6s";
+//         document.getElementById('obstaculo2').style.animationDuration = "10s";
+//         document.getElementsByClassName('fondo9')[0].style.animationDuration = "10s";
+//         document.getElementsByClassName('fondo8')[0].style.animationDuration = "13s";
+//         document.getElementsByClassName('fondo7')[0].style.animationDuration = "15s";
+//         document.getElementsByClassName('fondo6')[0].style.animationDuration = "22s";
+//         document.getElementsByClassName('fondo5')[0].style.animationDuration = "30s";
+//         document.getElementsByClassName('fondo4')[0].style.animationDuration = "35s";
+//         document.getElementsByClassName('fondo3')[0].style.animationDuration = "40s";
+//         document.getElementsByClassName('fondo2')[0].style.animationDuration = "50s";
+//     }
+// }
