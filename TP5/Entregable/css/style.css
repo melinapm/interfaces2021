@@ -4,37 +4,37 @@
 
 /* -------------------------------- Nav -------------------------------- */
 .site-header {
-  position: relative;
-  background-color: #139A41;
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  height: 56px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
-
-.site-header a {
-  color: #FFE2C3;
-  transition: ease-in-out color .15s;
-}
-
-.site-header a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.site-header i {
-  font-size: 1.7rem; 
-}
+    position: relative;
+    background-color: #139A41;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    height: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+  
+  .site-header a {
+    color: #FFE2C3;
+    transition: ease-in-out color .15s;
+  }
+  
+  .site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .site-header i {
+    font-size: 1.7rem; 
+  }
