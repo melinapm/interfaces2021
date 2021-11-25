@@ -1,0 +1,67 @@
+/* -------------------------------- Estilos Globales -------------------------------- */
+* {
+	font-family: 'Montserrat', sans-serif;
+  }
+
+h1 {
+	font-size: 2.2rem !important; 
+}
+
+h3 {
+	font-size: 1.2rem !important; 
+}
+
+p {
+	font-size: 0.8rem;
+}
+
+/* -------------------------------- Nav -------------------------------- */
+.site-header {
+	color:white;
+	position: relative;
+	background-color: #167979;
+	-webkit-backdrop-filter: saturate(180%) blur(20px);
+	backdrop-filter: saturate(180%) blur(20px);
+	height: 60px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+  }
+  
+  .fixed-top {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+  }
+  
+  .site-header a {
+	color: white;
+	transition: ease-in-out color .15s;
+  }
+  
+  .site-header .container {
+	justify-content: center !important;
+	}
+
+	.padding5 {
+		padding: 0.5rem;
+	}
+
+	.padding10 {
+		padding: 1rem;
+	}
+
+
+/* Animacion botones hover nav*/
+  
+a.material-icons:hover {
+		background-color: transparent;
+		/* transform: rotate(90deg); */
+		transform: scale(1.5);
+		cursor: pointer;
+		box-shadow: none;
+		color: #F5C971;
+}

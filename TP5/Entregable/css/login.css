@@ -1,0 +1,144 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('../images/loginfondo.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    color: white;
+    font-size: 4rem;
+}
+
+hr {
+    height: 0.1px;
+    background-color: rgb(66, 66, 66);
+  }
+
+p{
+    margin-top: -3px;
+    font-size: 0.8rem;
+}
+
+.modal{
+    position: inherit;
+    width: 21.8rem;
+    height: 19rem;
+    background-color: rgba(141, 232, 172, 0.8);
+    border-radius: 15px;
+    padding: 0.5rem;
+    display:block;
+    align-items: center;
+    text-align: center;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+button {
+    height: 50px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    width: 100%;
+    border-style: none;
+}
+
+#boton1{  
+    background: #FFE2C3;
+}
+#boton2{
+    background: #139A41;
+    color: white;
+}
+.your-input {
+    margin-top: 0.1rem;
+}
+.your-input input{
+    width: 100%;
+    height: 50px;
+    padding-top: 1.1rem;
+    padding-left: 9px;
+    outline: none;
+    border: 1px solid #8c8c8c;
+    border-radius: 3px;
+    transition: .2s;
+    border-radius: 15px;
+    box-shadow: 2px 3px 5px #999;
+}
+  
+.your-input label {
+    position: absolute;
+    top: 30%;
+    left: 10px;
+    font-size: 1.1rem;
+    color: #8c8c8c;
+    transition: .2s;
+}
+  
+.input input:focus ~ label,
+.input input:valid ~ label{
+    top: 10%;
+    font-size: .8rem;
+    color: #000;
+}
+  
+.input input:focus {
+    border-width: 2px;
+    border-color: #139A41;
+}
+  
+.forgot-password-link {
+    width: 140px;
+    padding: .2rem;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bolder;
+    color: #0A66C3;
+    transition: .3s;
+    border-radius: 12px;
+}
+.forgot-password-link:hover{
+    background: rgba(10, 102, 195, 0.3);
+}
+  
+
+  
+.join-link {
+   text-decoration: none;
+   font-weight: bolder;
+   color: #0A66C3; 
+}
+  
+.join-now{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #0A66C3; 
+    border-radius: 12px;
+    transition: .3s;
+    font-weight: bolder;
+    padding: .2rem;
+}
+  
+.join-now:hover{
+    background: rgba(10, 102, 195, 0.3);   
+}
+/* Fin de Clases de input tipo linkedn */
