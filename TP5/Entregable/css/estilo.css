@@ -65,3 +65,11 @@ a.material-icons:hover {
 		box-shadow: none;
 		color: #F5C971;
 }
+
+
+/* -------------------------------- Publicaciones -------------------------------- */
+
+.publicaciones {
+	padding: 0rem !important;
+	background-color: #D0EEE9;
+}

@@ -2,11 +2,68 @@
 <!-- Muro principal de login -->
 
 <section class="mb-4">
-    <h2 class="h3-responsive font-weight-bold text-center my-4"> Este seria el muro principal de login </h2>
+    <h2 class="h3-responsive font-weight-bold text-center my-4"> </h2>
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
     <div class="row">
-        <div class="bordes col-4 col-md-2">.col-6 .col-md-4</div>
-        <div class="bordes col-10 col-md-8 bordes">.col-6 .col-md-4</div>
-        <div class="bordes col-4 col-md-2 bordes">.col-6 .col-md-4</div>
+
+        <!-- Sugerencias -->
+        <div class="col-4 col-md-2">.col-6 .col-md-4</div>
+
+        <!-- Publicaciones -->
+        <div class="contenedorPublicaciones col-10 col-md-8">
+            
+            <div class="publicaciones p-2 shadow mb-3">
+                <textarea class="form-control">Crear una nueva publicación</textarea>
+
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <a href="#"><div class="float-left ml-2"><i class="bi bi-images"></i> </div></a>
+                    </div>
+                    <div class="col-6">
+                        <div class="float-right"> <button class="btn btn-primary btn-sm shadow-none" type="button">Publicar</button></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="publicaciones p-2 shadow mb-3">
+                    <div>
+                        <div class="d-flex flex-row user-info">
+                            <img class="rounded-circle" src="https://cdn.pixabay.com/photo/2016/10/07/19/05/girl-1722402_960_720.jpg" width="50">
+                            <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">Marry Andrews</span><span class="date text-black-50">Jan 2020</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </div>
+                    
+                    <div>  
+                        <div class="row mb-2">
+                            <div class="col-6">                      
+                                    <div class="float-left mr-2">
+                                        <span class="ml-2">5</span><a class="p-1" href="#"><i class="bi bi-hand-thumbs-up"></i></a>
+                                        <a class="p-1" href="#"><i class="bi bi-hand-thumbs-down"></i></a>
+                                    </div>
+                            </div>
+                            <div class="col-6"> 
+                                <div class="float-right">
+                                    <a class="p-2" href="#"><i class="bi bi-chat-left-text"></i><span class="ml-1">Comentar</span></a>
+                                    <a class="p-2" href="#"><i class="bi bi-share"></i><span class="ml-1">Compartir</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-row align-items-start">
+                        <img class="rounded-circle" src="images/perfil.png" width="40">
+                        <input type="text" class="ml-1 form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="Escribe un comentario">
+                    </div>
+                    
+            </div>
+
+
+        </div>
+
+        <!-- Contactos -->
+        <div class="col-4 col-md-2 bordes">.col-6 .col-md-4</div>
     </div>
 </section>
