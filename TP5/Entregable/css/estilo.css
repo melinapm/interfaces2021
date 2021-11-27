@@ -1,6 +1,6 @@
 /* -------------------------------- Estilos Globales -------------------------------- */
-* {
-	font-family: 'Montserrat', sans-serif;
+body {
+	font-family: 'Montserrat', sans-serif !important;
   }
 
 h1 {
@@ -11,8 +11,16 @@ h3 {
 	font-size: 1.2rem !important; 
 }
 
+h5 {
+	font-size: 0.9rem !important; 
+}
+
 p {
 	font-size: 0.8rem;
+}
+
+a {
+	text-decoration: none !important;
 }
 
 /* -------------------------------- Nav -------------------------------- */
@@ -58,12 +66,14 @@ a.material-icons:hover {
 		color: #F5C971;
 }
 
-/* -------------------------------- Contenedor principal -------------------------------- */
+/* -------------------------------- Contenedores -------------------------------- */
 
 #div_principal {
 	margin-top: 5.55rem;
+	width: 80%;
+	margin-left: auto;
+  	margin-right: auto;
 }
-
 
 /* -------------------------------- Publicaciones -------------------------------- */
 
@@ -71,4 +81,57 @@ a.material-icons:hover {
 	padding: 0rem !important;
 	background-color: #D0EEE9;
 	border-radius: 5px;
+}
+
+.sugerencias {
+	padding: 0rem !important;
+	background-color: #D0EEE9;
+	border-radius: 5px;
+	height: 630px;
+}
+
+.chat {
+	padding: 0rem !important;
+	background-color: #D0EEE9;
+	border-radius: 5px;
+	height: 630px;
+}
+
+
+/* -------------------------------- Cards sugerencias de amistad -------------------------------- */
+
+.card {
+    width: 100%;
+    border-radius: 33px;
+}
+
+.top-container {
+    display: flex;
+    align-items: center;
+	background: rgba(255, 226, 195, 0.4);
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-image {
+	border: 0.1px solid #167979;
+	margin: 2px;
+}
+
+.nameSugerencias {
+    font-size: 14px;
+    color: #272727;
+    position: relative;
+    top: 8px
+}
+
+.infoSugerencias {
+    font-size: 12px;
+    color: grey;
+    position: relative;
+    top: 2px
+}
+
+.card:hover {
+	font-weight: bold;
+    border: 1px solid #167979;
 }
