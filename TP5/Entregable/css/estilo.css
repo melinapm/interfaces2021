@@ -22,19 +22,11 @@ p {
 	background-color: #167979;
 	-webkit-backdrop-filter: saturate(180%) blur(20px);
 	backdrop-filter: saturate(180%) blur(20px);
-	height: 60px;
+	height: 3.75rem;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-  }
-  
-  .fixed-top {
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 1030;
   }
   
   .site-header a {
@@ -64,6 +56,12 @@ a.material-icons:hover {
 		cursor: pointer;
 		box-shadow: none;
 		color: #F5C971;
+}
+
+/* -------------------------------- Contenedor principal -------------------------------- */
+
+#div_principal {
+	margin-top: 5.55rem;
 }
 
 
