@@ -1,6 +1,100 @@
 
-<!-- Muro principal de login -->
+<!-- Busquedas -->
 
-<section class="mb-4">
-    <h2 class="h1-responsive font-weight-bold text-center my-4"> Pagina para buscar </h2>
+<section>
+
+    <div class="row">
+
+        <div class="col-2"></div>
+
+        <!-- busquedas -->
+        <div class="contenedorPublicaciones col-8">
+            
+            <div class="publicaciones p-4 shadow mb-3 input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="search" value="search" id="example-search-input">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </span>
+            </div>
+            
+              <div id="accordion" class="ml-2 mr-2 row">
+
+                <div class="p-0 col-4">
+                    <button class="col-md-12 text-center btn" data-toggle="collapse" data-target="#collapse" aria-controls="collapse">Todos</button>
+                </div>
+
+                <div class="p-0 col-4">
+                      <button class="col-md-12 text-center btn" data-toggle="collapse" data-target="#collapsePersonas" aria-expanded="false" aria-controls="collapsePersonas">
+                        Personas
+                      </button>
+                </div>
+                <div class="p-0 col-4">
+                      <button class="col-md-12 text-center btn" data-toggle="collapse" data-target="#collapsePublicaciones" aria-expanded="false" aria-controls="collapsePublicaciones">
+                        Publicaciones
+                      </button>
+                </div>
+
+                  <div id="collapsePersonas" class="p-0 collapse col-12" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body row align-items-center">
+                      <div class="col-4">
+                        <div class="row align-items-center">
+                          <div class="col-4 align-items-center">
+                            <h5 class="text-right m-0 font-weight-bold"> Provincia </h5>
+                          </div>
+                          <div class="p-0 col-8 float-left">
+                            <select>
+                              <option> Buenos Aires </option>
+                              <option> La Pampa </option>
+                              <option> Tierra del Fuego </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="row align-items-center">
+                          <div class="col-4 align-items-center">
+                            <h5 class="text-right m-0 font-weight-bold"> Universidad </h5>
+                          </div>
+                          <div class="p-0 col-8 float-left">
+                            <select>
+                              <option> UNICEN </option>
+                              <option> UBA </option>
+                              <option> UNLP </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="row align-items-center">
+                          <div class="col-4 align-items-center">
+                            <h5 class="text-right m-0 font-weight-bold"> Especialidad </h5>
+                          </div>
+                          <div class="p-0 col-8 float-left">
+                            <select>
+                              <option> Pequeños animales </option>
+                              <option> Exoticos </option>
+                              <option> Equinos </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="collapsePublicaciones" class="p-0 collapse col-12" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      Publicaciones
+                    </div>
+                  </div>
+              </div>
+
+                   
+
+            
+        </div>
+
+         <div class="col-2"> </div>
+
+    </div>
 </section>

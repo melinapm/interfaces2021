@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
   $("#home").click(function(e){
     e.preventDefault();
-    $('#div_principal').load('muro.html',function() {
+    $('#div_principal').load('chat.html',function() {
         $("#div_principal").fadeIn(800);
       });
    })
@@ -28,6 +28,12 @@ $(document).ready(function(){
      $("#buscar").click(function(e){
       e.preventDefault();
       $('#div_principal').load('buscar.html',function() {
+          $("#div_principal").fadeIn(800);
+        });
+     })
+     $("#chat").click(function(e){
+      e.preventDefault();
+      $('#div_principal').load('chat.html',function() {
           $("#div_principal").fadeIn(800);
         });
      })
