@@ -426,3 +426,35 @@ a.material-icons:hover {
     background: #64BFBF;
     font-weight: bold;
 }
+
+
+/*Notificaciones*/
+
+.modalNotificaciones {
+    background-color: #D0EEE9 !important;
+    padding: 5px;
+}
+
+.modal-dialog {
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    width: 110%;
+  }
+
+.modal {
+    width: 110% !important;
+}
+
+  
+/*Configuraciones*/
+
+.modalConfiguraciones {
+    background-color: #167979 !important;
+    padding: 5px;
+    width: 50% !important;
+}
+
+

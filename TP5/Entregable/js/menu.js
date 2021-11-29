@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
   $("#home").click(function(e){
     e.preventDefault();
-    $('#div_principal').load('chat.html',function() {
+    $('#div_principal').load('muro.html',function() {
         $("#div_principal").fadeIn(800);
       });
    })

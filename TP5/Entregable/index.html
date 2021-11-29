@@ -31,14 +31,14 @@
           <a id="buscar" class="py-2 padding10 material-icons" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 30 30"><path d="M9.5,4A6.5,6.5 0 0,1 16,10.5C16,12.12 15.41,13.6 14.43,14.73L20.08,20.38L19.37,21.09L13.72,15.44C12.59,16.41 11.11,17 9.5,17A6.5,6.5 0 0,1 3,10.5A6.5,6.5 0 0,1 9.5,4M9.5,5A5.5,5.5 0 0,0 4,10.5A5.5,5.5 0 0,0 9.5,16A5.5,5.5 0 0,0 15,10.5A5.5,5.5 0 0,0 9.5,5Z"/></svg>
           </a>
-          <a id="notificaciones" class="py-2 padding10 material-icons" href="#">
+          <a id="notificaciones" class="py-2 padding10 material-icons" href="#" data-toggle="modal" data-target="#modalNotificaciones">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 30 30"><path d="M12,4.5A0.5,0.5 0 0,0 11.5,4A0.5,0.5 0 0,0 11,4.5V6.03C8.75,6.28 7,8.18 7,10.5V16.41L5.41,18H17.59L16,16.41V10.5C16,8.18 14.25,6.28 12,6.03V4.5M11.5,3A1.5,1.5 0 0,1 13,4.5V5.21C15.31,5.86 17,8 17,10.5V16L20,19H3L6,16V10.5C6,8 7.69,5.86 10,5.21V4.5A1.5,1.5 0 0,1 11.5,3M11.5,22C10.29,22 9.28,21.14 9.05,20H10.09C10.29,20.58 10.85,21 11.5,21C12.15,21 12.71,20.58 12.91,20H13.95C13.72,21.14 12.71,22 11.5,22Z"/></svg>
           </a>
         </div>
         <div class="form-inline">
           <h3 class="font-weight-bold padding5"> Hola Laura </h3>
             <img style="height:56px;width:56px" class="rounded-circle img-fluid" src="images/perfilF.png" data-holder-rendered="true">
-          <a id="configuraciones" class="py-2 padding5 material-icons" href="#">
+          <a id="configuraciones" class="py-2 padding5 material-icons" href="#"  data-toggle="modal" data-target="#modalConfiguraciones">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 30 30"><path d="M5.84,9.59L11.5,15.25L17.16,9.59L16.45,8.89L11.5,13.84L6.55,8.89L5.84,9.59Z"/></svg>
           </a>
         </div>
@@ -52,6 +52,51 @@
 
     </div>
     <!-- Fin Div principal -->
+
+      <!-- Modal Publicaciones -->
+      <div id="modalNotificaciones" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modalNotificacionesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modalNotificaciones modal-content">
+            <h3 class="font-weight-bold"> Notificaciones </h3>
+            <div class="border-top border-white pb-2">
+              <p class="pt-1 font-weight-bold"> Nuevas </p>
+              <div class="card">
+                <div class="top-container"> <img src="images/sugerencias/6.png" class="rounded-circle img-fluid profile-image" width="70">
+                    <div>
+                        <h5 class="p-1 nameSugerencias"> Manuel Javier Rosas agrego un comentario en tu publicacion.</h5>
+                        <p class="p-1 infoSugerencias"> Hace 4 minutos </p>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-top border-white">
+              <p class="pt-1"> Esta semana </p>
+              <div class="card">
+                <div class="top-container"> <img src="images/sugerencias/6.png" class="rounded-circle img-fluid profile-image" width="70">
+                    <div>
+                        <h5 class="p-1 nameSugerencias"> Maria Ester Peralta y 12 personas reaccionaron a tu publicacion.</h5>
+                        <p class="p-1 infoSugerencias"> Hace 1 semana </p>
+                    </div>
+                </div>
+              </div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Modal Configuraciones -->
+      <div id="modalConfiguraciones" class="modal right fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modalConfiguracionesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modalConfiguraciones modal-content">
+            <h3> Tu perfil </h3>
+            <h3> Configuracion </h3>
+            <h3> Ayuda </h3>
+            <h3> Salir </h3>
+          </div>
+        </div>
+      </div>
+  
 
 	<!-- JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
