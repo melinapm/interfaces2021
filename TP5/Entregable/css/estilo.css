@@ -140,18 +140,15 @@ a.material-icons:hover {
 
 /* -------------------------------- Cards chat principal -------------------------------- */
 
-.online {
-    color: #86c541
-}
 
-.offline {
-    color: #e47297
-}
-
-.dot {
-	font-size: 12px !important;
-}
-
+.logged-in {
+    color: green;
+  }
+  
+  .logged-out {
+    color: red;
+  }
+  
 
 /* -------------------------------- Chat -------------------------------- */
 
@@ -336,16 +333,20 @@ a.material-icons:hover {
     vertical-align: middle
 }
 
-.online {
-    color: #86c541
+
+.online_icon{
+    position: absolute;
+    height: 15px;
+    width:15px;
+    background-color: #4cd137;
+    border-radius: 50%;
+    bottom: 0.2em;
+    right: 0.4em;
+    border:1.5px solid white;
 }
 
-.offline {
-    color: #e47297
-}
-
-.me {
-    color: #1d8ecd
+.offline{
+    background-color: #c23616 !important;
 }
 
 .float-right {
@@ -405,7 +406,6 @@ a.material-icons:hover {
         overflow-x: auto
     }
 }
-
 
 
 /*Input Buscar*/
