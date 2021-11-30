@@ -4,25 +4,26 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('../images/loginfondo.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  font-family: 'Montserrat', sans-serif !important;
+  background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('../images/loginfondo.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .container {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1 {
-    color: white;
-    font-size: 4rem;
+  color: white;
+  font-size: 4rem;
 }
 
 hr {
@@ -30,16 +31,12 @@ hr {
     background-color: rgb(66, 66, 66);
   }
 
-p{
-    margin-top: -3px;
-    font-size: 0.8rem;
-}
-
 .modal{
     position: inherit;
     width: 21.8rem;
     height: 19rem;
-    background-color: rgba(141, 232, 172, 0.8);
+    background-color: #D0EEE9;
+    opacity: 80%;
     border-radius: 15px;
     padding: 0.5rem;
     display:block;
@@ -54,24 +51,10 @@ p{
     margin-bottom: 0.5rem;
 }
 
-button {
-    height: 50px;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    width: 100%;
-    border-style: none;
-}
-
-#boton1{  
-    background: #FFE2C3;
-}
-#boton2{
-    background: #139A41;
-    color: white;
-}
 .your-input {
     margin-top: 0.1rem;
 }
+
 .your-input input{
     width: 100%;
     height: 50px;
@@ -120,25 +103,21 @@ button {
     background: rgba(10, 102, 195, 0.3);
 }
   
+.btn{
+  width: 100%;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  box-shadow: 2px 3px 5px #999;
+}
 
-  
-.join-link {
-   text-decoration: none;
-   font-weight: bolder;
-   color: #0A66C3; 
+.btn-primary {
+  background: #167979;
+  color: white;
+  margin-top: 1.4rem;
 }
-  
-.join-now{
-    text-decoration: none;
-    font-weight: bolder;
-    color: #0A66C3; 
-    border-radius: 12px;
-    transition: .3s;
-    font-weight: bolder;
-    padding: .2rem;
+
+.btn-secundary {
+  background: #164d79;
+  color: white;
 }
-  
-.join-now:hover{
-    background: rgba(10, 102, 195, 0.3);   
-}
-/* Fin de Clases de input tipo linkedn */
+

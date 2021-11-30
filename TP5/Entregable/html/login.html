@@ -12,30 +12,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/login.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400" rel="stylesheet">
+
     </head>
 
     <body>
         <div class="container">
-        <h1>SocialVet</h1>
-        <div class="modal flex">
-            <form class="your-input" action="">
-                <div class="input">
-                    <input type="text" name="usuario" 
-                    id="usuario" required />
-                    <label for="usuario">Usuario</label>
-                </div>
-                <div class="input">
-                    <input type="password" name="password" 
-                    id="password" required />
-                    <label for="password">
-                        Contraseña
-                    </label>
-                </div>
-            </form>
-            <p>¿Olvidaste tu contraseña?</p>
-            <button id="boton1">Iniciar sesion</button>
-            <hr>
-            <button id="boton2">Crear una cuenta</button>
+            <h1>SocialVet</h1>
+            <div class="modal flex">
+                <form class="your-input" action="">
+                    <div class="input">
+                        <input type="text" name="usuario" 
+                        id="usuario" required />
+                        <label for="usuario">Usuario</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" 
+                        id="password" required />
+                        <label for="password">
+                            Contraseña
+                        </label>
+                    </div>
+                </form>
+                <a href="">¿Olvidaste tu contraseña?</a>
+                <button type="button" class="btn btn-primary">Iniciar sesión</button>
+                <hr>
+                <button type="button" class="btn btn-secundary">Crear una cuenta</button>
+            </div>
+            
         </div>
     </body>
 </html>
