@@ -431,8 +431,10 @@ a.material-icons:hover {
 /*Notificaciones*/
 
 .modalNotificaciones {
-    background-color: #D0EEE9 !important;
+    background-color: #167979 !important;
+    color:white;
     padding: 5px;
+
 }
 
 .modal-dialog {
@@ -454,7 +456,40 @@ a.material-icons:hover {
 .modalConfiguraciones {
     background-color: #167979 !important;
     padding: 5px;
-    width: 50% !important;
+    width: 200px;
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    text-align: center;
 }
 
+.modalConfiguraciones a {
+    text-decoration: none !important;
+    color:white;
+}
 
+/* no me gusta */
+.modalNoMeGusta {
+    background-color: #D0EEE9 !important;
+}
+
+/* iconos */
+
+.publicar a i {
+    font-size: 22px;
+    color: #115F5F !important;
+}
+
+a i {
+    font-size: 18px;
+    color: #115F5F;
+}
+
+.link-secundario {
+    color: #115F5F !important;
+}
+
+.btn-primary {
+    background-color: #167979 !important;
+    border-color: #167979 !important;
+}

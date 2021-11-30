@@ -2,6 +2,8 @@
 
 /// Menu con JQuery
 $(document).ready(function(){
+  document.getElementById("modalConfiguraciones").style.display = "none";
+
   $('#div_principal').load('muro.html',function() {
       $("#div_principal").fadeIn(800);
     });
@@ -38,3 +40,14 @@ $(document).ready(function(){
         });
      })
 });
+
+document.getElementById("configuraciones").addEventListener("click", toggleConfig);
+
+function toggleConfig() {
+  var x = document.getElementById("modalConfiguraciones");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
