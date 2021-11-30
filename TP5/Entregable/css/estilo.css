@@ -66,6 +66,7 @@ a.material-icons:hover {
 		color: #F5C971;
 }
 
+
 /* -------------------------------- Contenedores -------------------------------- */
 
 #div_principal {
@@ -468,6 +469,11 @@ a.material-icons:hover {
     color:white;
 }
 
+.modalConfiguraciones a:hover {
+    color: #F5C971;
+}
+
+
 /* no me gusta */
 .modalNoMeGusta {
     background-color: #D0EEE9 !important;
@@ -481,7 +487,7 @@ a.material-icons:hover {
 }
 
 a i {
-    font-size: 18px;
+    font-size: 20px;
     color: #115F5F;
 }
 
