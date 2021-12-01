@@ -54,6 +54,11 @@ a {
 		padding: 1rem;
 	}
 
+@media (min-width: 1200px) {  
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 800px !important;
+    }
+}
 
 /* Animacion botones hover nav*/
   
@@ -66,6 +71,16 @@ a.material-icons:hover {
 		color: #F5C971;
 }
 
+/* -------------------------------- mediaQuery para pantallas medianas -------------------------------- */
+
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    #div_principal {
+        margin-top: 5.55rem;
+        margin-left: auto;
+          margin-right: auto;
+    }
+}
 
 /* -------------------------------- Contenedores -------------------------------- */
 
