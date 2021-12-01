@@ -84,12 +84,21 @@ a.material-icons:hover {
 	border-radius: 5px;
 }
 
+
 .sugerencias {
 	padding: 0rem !important;
 	background-color: #D0EEE9;
 	border-radius: 5px;
-	height: 615px;
+	height: 625px;
 }
+
+.chat-frecuentes {
+	padding: 0rem !important;
+	background-color: #D0EEE9;
+	border-radius: 5px;
+	height: 630px;
+}
+
 
 .chat {
 	padding: 0rem !important;
