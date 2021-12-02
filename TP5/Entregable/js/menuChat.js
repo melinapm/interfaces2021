@@ -13,7 +13,7 @@ $(document).ready(function(){
           $('#div_principal').load('chat.html',function() {
                $("#div_principal").fadeIn(800);
                });
-          })
+          })               
 });
 
 
@@ -23,3 +23,15 @@ document.getElementById("botonPublicar").addEventListener("click", function() {
      //console.log(document.getElementById("publicacionPrueba"));
      document.getElementById("publicacionPrueba").style.display = "block"; 
 });
+
+document.addEventListener('keydown', (event) => {
+    
+     var name = event.key;
+     if (name == "Enter") {
+          document.getElementById("comentarioPrueba").innerHTML = document.getElementById("textoComentarioPrueba").value;
+          console.log(document.getElementById("comentarioPruebaDiv"));
+          document.getElementById("comentarioPruebaDiv").style.display = "flex"; 
+     }
+
+     }
+);

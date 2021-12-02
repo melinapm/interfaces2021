@@ -144,7 +144,7 @@
                         <div class="col-6">                      
                                 <div class="float-left mr-2">
                                     <span class="ml-2">5</span><a class="p-1 link-secundario" href="#"><i class="bi bi-hand-thumbs-up"></i> Me gusta</a>
-                                    <a id="botonNoMeGusta" class="p-1" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
+                                    <a id="botonNoMeGusta" class="p-1  link-secundario" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
                                 </div>
                         </div>
                         <div class="col-6"> 
@@ -173,6 +173,12 @@
                         <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"> Julio Carlos Barberis</span><span class="date text-black-50">Noviembre 2021</span></div>
                     </div>
 
+                    <div class="mb-1 mt-1">
+                        <p class="comment-text">
+                            Loki en su primer control.
+                            <br>¿Cada cuanto creen que es necesario realizar los controles en caninos? Comenten!
+                        </p>
+                    </div>
                     <div class="tz-gallery">
                         <div class="row">
                             <div class="col-sm-12">
@@ -182,16 +188,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="mt-2">
-                        <p class="comment-text">
-                            Loki en su primer control.
-                        </p>
-                        <p class="comment-text">
-                            ¿Cada cuanto creen que es necesario realizar los controles en caninos? Comenten!
-                        </p>
-                    </div>
                 </div>
                 
                 <div>  
@@ -199,13 +195,51 @@
                         <div class="col-6">                      
                                 <div class="float-left mr-2">
                                     <span class="ml-2">5</span><a class="p-1 link-secundario" href="#"><i class="bi bi-hand-thumbs-up"></i> Me gusta </a>
-                                    <a id="botonNoMeGusta" class="p-1" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
+                                    <a id="botonNoMeGusta" class="p-1  link-secundario" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
                                 </div>
                         </div>
                         <div class="col-6"> 
                             <div class="float-right">
-                                <a class="p-2 link-secundario" href="#"><i class="bi bi-chat-left-text"></i><span class="ml-1">Comentarios</span></a>
+                                <a class="p-2 link-secundario" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1"><i class="bi bi-chat-left-text"></i><span class="ml-1">Comentarios</span></a>
                                 <a class="p-2 link-secundario" href="#"><i class="bi bi-share"></i><span class="ml-1">Compartir</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coment-bottom p-2">
+                        <div class="collapsable-comment">
+                            <div id="collapse-1" class="collapse">
+                                <div class="row m-2">
+                                    <img class="rounded-circle img-fluid" src="images/contactos/cf1.png" width="50">
+                                    <div class="commented-section border">
+                                        <div class="d-flex flex-row">
+                                            <h5 class="ml-2 comment-name-sm font-weight-bold">Marina Valeria De Mateo </h5>
+                                            <div class="pl-2 pr-2 comment-time-sm "><span>  41 minutos </span></div>
+                                        </div>
+                                        <div class="pl-2 pr-2 comment-text-sm"><span> Creo que es importante que los controles sean cada 3 meses</span></div>
+                                    </div>
+                                </div>
+                                <div class="row m-2">
+                                    <img class="rounded-circle img-fluid" src="images/contactos/cm6.png" width="50">
+                                    <div class="commented-section border">
+                                        <div class="d-flex flex-row">
+                                            <h5 class="ml-2 comment-name-sm font-weight-bold"> Alejandro Martin Berruet</h5>
+                                            <div class="pl-2 pr-2 comment-time-sm"><span> 5 horas </span></div>
+                                        </div>
+                                        <div class="pl-2 pr-2 comment-text-sm"><span>  Siempre depende del paciente, edad, enfermendades, etc...</span></div>
+                                    </div>
+                                </div>
+
+                                    <div id="comentarioPruebaDiv" class="row m-2">
+                                        <img class="rounded-circle img-fluid" src="images/perfilF.png" width="50">
+                                        <div class="commented-section border">
+                                            <div class="d-flex flex-row">
+                                                <h5 class="ml-2 comment-name-sm font-weight-bold"> Laura Gonzalez </h5>
+                                                <div class="pl-2 pr-2 comment-time-sm"><span> 1 segundo </span></div>
+                                            </div>
+                                            <div class="pl-2 pr-2 comment-text-sm"><span id="comentarioPrueba"> </span></div>
+                                        </div>
+                                    </div>
+
                             </div>
                         </div>
                     </div>
@@ -213,7 +247,7 @@
 
                 <div class="d-flex flex-row align-items-start">
                     <img class="rounded-circle" src="images/perfilF.png" width="40">
-                    <input type="text" class="ml-1 form-control border-end-0 border rounded-pill" aria-label="Default" aria-describedby="inputGroup-sizing-default" onfocus="this.value=''" value="Escribe un comentario">
+                    <input id="textoComentarioPrueba" type="text" class="ml-1 form-control border-end-0 border rounded-pill" aria-label="Default" aria-describedby="inputGroup-sizing-default" onfocus="this.value=''" value="Escribe un comentario">
                 </div>
 
             </div>
@@ -230,8 +264,9 @@
                             <p class="comment-text"> Hoy realice mi primera cirugia de cataratas en un perro.
                                 La catarata era debida a la opacificación del cristalino, y la única forma de recuperar visión fue su extracción y sustitución por otra lente intraocular. 
                                 La cirugía es la llamada facoemulsificación del cristalino, que es el mismo procedimiento que se usa en humanos.
+                                <br>
+                                ¡Muy feliz!
                             </p>
-                            <p>¡Muy feliz!</p>
                         </div>
                     </div>
                     
@@ -240,7 +275,7 @@
                             <div class="col-6">                      
                                     <div class="float-left mr-2">
                                         <span class="ml-2">5</span><a class="p-1 link-secundario" href="#"><i class="bi bi-hand-thumbs-up"></i> Me gusta</a>
-                                        <a id="botonNoMeGusta" class="p-1" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
+                                        <a id="botonNoMeGusta" class="p-1  link-secundario" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
                                     </div>
                             </div>
                             <div class="col-6"> 
@@ -271,6 +306,11 @@
                         <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">  Gerardo Jorge Schenck </span><span class="date text-black-50">Enero 2021</span></div>
                     </div>
 
+                    <div class="mb-1 mt-1">
+                        <p class="comment-text"> 
+                            Los invitamos a conocer nuestra clinica veterinaria Ejea, nuestros profecionales y algunos de nuestros pacientes.                      
+                        </p>
+                    </div>
                     
                     <div class="tz-gallery container profile">
                         <div class="profile-img-list">
@@ -281,13 +321,6 @@
                             <div class="profile-img-list-item"><a href="images/publicaciones/5.png" class="lightbox profile-img-list-link"><span class="profile-img-content" style="background-image: url(images/publicaciones/5.png)"></span></a></div>
                             <div class="profile-img-list-item"><a href="images/publicaciones/6.png" class="lightbox profile-img-list-link"><span class="profile-img-content" style="background-image: url(images/publicaciones/6.png)"></span></a></div>                        </div>
                     </div>
-
-
-                    <div class="mt-2">
-                        <p class="comment-text"> 
-                            Los invitamos a conocer nuestra clinica veterinaria Ejea, nuestros profecionales y algunos de nuestros pacientes.                      
-                        </p>
-                    </div>
                 </div>
                 
                 <div>  
@@ -295,7 +328,7 @@
                         <div class="col-6">                      
                                 <div class="float-left mr-2">
                                     <span class="ml-2">5</span><a class="p-1 link-secundario" href="#"><i class="bi bi-hand-thumbs-up"></i> Me gusta</a>
-                                    <a id="botonNoMeGusta" class="p-1" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
+                                    <a id="botonNoMeGusta" class="p-1  link-secundario" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
                                 </div>
                         </div>
                         <div class="col-6"> 
