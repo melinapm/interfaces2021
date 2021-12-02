@@ -4,7 +4,7 @@
 $(document).ready(function(){
   document.getElementById("modalConfiguraciones").style.display = "none";
 
-  $('#div_principal').load('chat.html',function() {
+  $('#div_principal').load('muro.html',function() {
       $("#div_principal").fadeIn(800);
     });
   $("#home").click(function(e){
