@@ -4,10 +4,16 @@
 $(document).ready(function(){
   document.getElementById("modalConfiguraciones").style.display = "none";
 
-  $('#div_principal').load('muro.html',function() {
+  $('#div_principal').load('chat.html',function() {
       $("#div_principal").fadeIn(800);
     });
   $("#home").click(function(e){
+    e.preventDefault();
+    $('#div_principal').load('muro.html',function() {
+        $("#div_principal").fadeIn(800);
+      });
+   })
+   $("#home2").click(function(e){
     e.preventDefault();
     $('#div_principal').load('muro.html',function() {
         $("#div_principal").fadeIn(800);
@@ -27,13 +33,19 @@ $(document).ready(function(){
           $("#div_principal").fadeIn(800);
         });
      })
+     $("#perfilConfig").click(function(e){
+      e.preventDefault();
+      $('#div_principal').load('perfil.html',function() {
+          $("#div_principal").fadeIn(800);
+        });
+     })
      $("#buscar").click(function(e){
       e.preventDefault();
       $('#div_principal').load('buscar.html',function() {
           $("#div_principal").fadeIn(800);
         });
      })
-     $("#chat").click(function(e){
+     $("#icon-nav-chat").click(function(e){
       e.preventDefault();
       $('#div_principal').load('chat.html',function() {
           $("#div_principal").fadeIn(800);
