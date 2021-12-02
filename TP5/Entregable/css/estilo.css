@@ -622,3 +622,7 @@ a i .contenedorPublicaciones {
     border-radius: 0px;
     margin-bottom: 0.01rem;
 }
+
+.publicacionPrueba {
+    display: none;
+}

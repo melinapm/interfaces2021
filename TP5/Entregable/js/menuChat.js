@@ -15,3 +15,11 @@ $(document).ready(function(){
                });
           })
 });
+
+
+
+document.getElementById("botonPublicar").addEventListener("click", function() {
+     document.getElementById("textoPublicacionPrueba").innerHTML = document.getElementById("textoPublicacion").value; 
+     //console.log(document.getElementById("publicacionPrueba"));
+     document.getElementById("publicacionPrueba").style.display = "block"; 
+});

@@ -115,16 +115,52 @@
         <div class="contenedorPublicaciones col-6">
             
             <div class="publicaciones publicar p-2 shadow mb-3">
-                <textarea class="form-control" onfocus="this.value=''">Crear una nueva publicación</textarea>
+                <textarea id="textoPublicacion" class="form-control" onfocus="this.value=''">Crear una nueva publicación</textarea>
 
                 <div class="row mt-2">
                     <div class="col-6">
                         <a href="#"><div class="float-left ml-2"><i class="bi bi-images"></i> </div></a>
                     </div>
                     <div class="col-6">
-                        <div class="float-right"> <button class="btn btn-primary btn-sm shadow-none" type="button">Publicar</button></div>
+                        <div class="float-right"> <button id="botonPublicar" class="btn btn-primary btn-sm shadow-none" type="button">Publicar</button></div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Publicacion mia prueba -->
+            <div id="publicacionPrueba" class="publicacionPrueba publicaciones p-2 shadow mb-3">
+                <div>
+                    <div class="d-flex flex-row user-info">
+                        <img class="rounded-circle" src="images/perfilF.png" width="50">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">  Marina Valeria De Mateo </span><span class="date text-black-50">Octubre 2021</span></div>
+                    </div>
+                    <div class="mt-2">
+                        <p id="textoPublicacionPrueba" class="comment-text"> Prueba </p>
+                    </div>
+                </div>
+                
+                <div>  
+                    <div class="row mb-2">
+                        <div class="col-6">                      
+                                <div class="float-left mr-2">
+                                    <span class="ml-2">5</span><a class="p-1 link-secundario" href="#"><i class="bi bi-hand-thumbs-up"></i> Me gusta</a>
+                                    <a id="botonNoMeGusta" class="p-1" href="#" data-toggle="modal" data-target="#modalNoMeGusta"><i class="bi bi-hand-thumbs-down" ></i></a>
+                                </div>
+                        </div>
+                        <div class="col-6"> 
+                            <div class="float-right">
+                                <a class="p-2 link-secundario" href="#"><i class="bi bi-chat-left-text"></i><span class="ml-1">Comentarios</span></a>
+                                <a class="p-2 link-secundario" href="#"><i class="bi bi-share"></i><span class="ml-1">Compartir</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex flex-row align-items-start">
+                    <img class="rounded-circle" src="images/perfilF.png" width="40">
+                    <input type="text" class="ml-1 form-control border-end-0 border rounded-pill" aria-label="Default" aria-describedby="inputGroup-sizing-default" onfocus="this.value=''" value="Escribe un comentario">
+                </div>
+                
             </div>
 
             
