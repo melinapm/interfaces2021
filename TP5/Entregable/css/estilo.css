@@ -226,7 +226,7 @@ a.material-icons:hover {
 }
 
 .people-list .chat-list li.active {
-    background: white;
+    background: #e5f3f1 ;
 }
 
 .people-list .chat-list li .name {
