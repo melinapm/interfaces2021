@@ -16,7 +16,9 @@
 
     </head>
 
-    <body>
+    <body onload="loading()">
+      <div id="loader"></div>
+
         <div class="circle-container">
             <div class="circle"></div>
           </div>
@@ -318,7 +320,7 @@
             <div class="circle"></div>
           </div>
         
-        <div class="container">
+        <div class="container" id="contenido">
             <h1>SocialVet</h1>
             <div class="modal flex">
                 <form class="your-input" action="">
@@ -342,5 +344,6 @@
             </div>
             
         </div>
+        <script src="../js/loading.js"></script>
     </body>
 </html>

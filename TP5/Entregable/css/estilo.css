@@ -192,7 +192,6 @@ a.material-icons:hover {
     border-radius: .55rem;
     position: relative;
     width: 100%;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 50%);
 }
 .chat-app .people-list {
     width: 280px;
@@ -205,7 +204,6 @@ a.material-icons:hover {
 
 .chat-app .chat {
     margin-left: 280px;
-    border-left: 1px solid rgb(197, 197, 197);
 }
 
 .people-list {
@@ -250,9 +248,11 @@ a.material-icons:hover {
 }
 
 .people-list .status {
+    margin-top: -5%;
     color: rgb(121, 121, 121);
     font-size: 13px
 }
+
 
 .chat .chat-header {
     padding: 15px 20px;
@@ -355,7 +355,6 @@ a.material-icons:hover {
 .chat .chat-message {
     padding: 20px;
     background-color: white;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 50%);
 }
 
 .online,
