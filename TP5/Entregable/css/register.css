@@ -80,7 +80,8 @@ h2{
 }
   
 .input input:focus ~ label,
-.input input:valid ~ label{
+.input input:valid ~ label, 
+.input input:invalid ~ label{
     top: 10%;
     font-size: .8rem;
     color: #000;
@@ -135,6 +136,7 @@ h2{
   border-radius: 15px;
   box-shadow: 2px 3px 5px #999;
   margin-bottom: 0.5rem;
-  color: #8c8c8c;
+  color: #000;
+  font-size: 0.8rem;
 }
 
