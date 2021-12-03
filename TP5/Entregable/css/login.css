@@ -110,11 +110,13 @@ hr {
 }
   
 .input input:focus ~ label,
-.input input:valid ~ label{
+.input input:valid ~ label, 
+.input input:invalid ~ label {
     top: 10%;
     font-size: .8rem;
     color: #000;
 }
+
   
 .input input:focus {
     border-width: 2px;
