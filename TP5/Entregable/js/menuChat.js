@@ -35,3 +35,8 @@ document.addEventListener('keydown', (event) => {
 
      }
 );
+
+
+document.getElementById("botonMegusta").addEventListener("click", function() {
+     document.getElementById("cantidadMeGusta").innerHTML = 1;
+});
