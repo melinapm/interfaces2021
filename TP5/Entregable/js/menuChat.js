@@ -2,7 +2,8 @@
 
 /// Menu con JQuery
 $(document).ready(function(){
-     $("#chat").click(function(e){
+     $("#chat-contacto").click(function(e){
+          console.log("click");
           e.preventDefault();
           $('#div_principal').load('chat.html',function() {
                $("#div_principal").fadeIn(800);
@@ -15,7 +16,6 @@ $(document).ready(function(){
                });
           })               
 });
-
 
 
 document.getElementById("botonPublicar").addEventListener("click", function() {
